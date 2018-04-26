@@ -20,6 +20,18 @@ public:
   virtual void enterPragma(ParsePragmasParser::PragmaContext *ctx) = 0;
   virtual void exitPragma(ParsePragmasParser::PragmaContext *ctx) = 0;
 
+  virtual void enterNamePrag(ParsePragmasParser::NamePragContext *ctx) = 0;
+  virtual void exitNamePrag(ParsePragmasParser::NamePragContext *ctx) = 0;
+
+  virtual void enterMemPrag(ParsePragmasParser::MemPragContext *ctx) = 0;
+  virtual void exitMemPrag(ParsePragmasParser::MemPragContext *ctx) = 0;
+
+  virtual void enterPartitionPrag(ParsePragmasParser::PartitionPragContext *ctx) = 0;
+  virtual void exitPartitionPrag(ParsePragmasParser::PartitionPragContext *ctx) = 0;
+
+  virtual void enterRunsPrag(ParsePragmasParser::RunsPragContext *ctx) = 0;
+  virtual void exitRunsPrag(ParsePragmasParser::RunsPragContext *ctx) = 0;
+
 
 };
 

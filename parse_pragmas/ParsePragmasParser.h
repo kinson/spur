@@ -12,11 +12,12 @@
 class  ParsePragmasParser : public antlr4::Parser {
 public:
   enum {
-    PBEGIN = 1, CONDITION = 2, WS = 3
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, PBEGIN = 5, PEND = 6, CONDITION = 7, 
+    NEWLINE = 8, WS = 9
   };
 
   enum {
-    RuleProg = 0, RulePragma = 1
+    RuleProg = 0, RulePragma = 1, RuleDef = 2
   };
 
   ParsePragmasParser(antlr4::TokenStream *input);
@@ -30,7 +31,8 @@ public:
 
 
   class ProgContext;
-  class PragmaContext; 
+  class PragmaContext;
+  class DefContext; 
 
   class  ProgContext : public antlr4::ParserRuleContext {
   public:
@@ -51,7 +53,9 @@ public:
     PragmaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *PBEGIN();
+    DefContext *def();
     antlr4::tree::TerminalNode *CONDITION();
+    antlr4::tree::TerminalNode *NEWLINE();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -59,6 +63,53 @@ public:
   };
 
   PragmaContext* pragma();
+
+  class  DefContext : public antlr4::ParserRuleContext {
+  public:
+    DefContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    DefContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(DefContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
+    virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  NamePragContext : public DefContext {
+  public:
+    NamePragContext(DefContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+  };
+
+  class  PartitionPragContext : public DefContext {
+  public:
+    PartitionPragContext(DefContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+  };
+
+  class  MemPragContext : public DefContext {
+  public:
+    MemPragContext(DefContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+  };
+
+  class  RunsPragContext : public DefContext {
+  public:
+    RunsPragContext(DefContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+  };
+
+  DefContext* def();
 
 
 private:

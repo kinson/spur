@@ -12,7 +12,8 @@
 class  ParsePragmasLexer : public antlr4::Lexer {
 public:
   enum {
-    PBEGIN = 1, CONDITION = 2, WS = 3
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, PBEGIN = 5, PEND = 6, CONDITION = 7, 
+    NEWLINE = 8, WS = 9
   };
 
   ParsePragmasLexer(antlr4::CharStream *input);

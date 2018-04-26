@@ -22,6 +22,18 @@ public:
   virtual void enterPragma(ParsePragmasParser::PragmaContext * /*ctx*/) override { }
   virtual void exitPragma(ParsePragmasParser::PragmaContext * /*ctx*/) override { }
 
+  virtual void enterNamePrag(ParsePragmasParser::NamePragContext * /*ctx*/) override { }
+  virtual void exitNamePrag(ParsePragmasParser::NamePragContext * /*ctx*/) override { }
+
+  virtual void enterMemPrag(ParsePragmasParser::MemPragContext * /*ctx*/) override { }
+  virtual void exitMemPrag(ParsePragmasParser::MemPragContext * /*ctx*/) override { }
+
+  virtual void enterPartitionPrag(ParsePragmasParser::PartitionPragContext * /*ctx*/) override { }
+  virtual void exitPartitionPrag(ParsePragmasParser::PartitionPragContext * /*ctx*/) override { }
+
+  virtual void enterRunsPrag(ParsePragmasParser::RunsPragContext * /*ctx*/) override { }
+  virtual void exitRunsPrag(ParsePragmasParser::RunsPragContext * /*ctx*/) override { }
+
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
   virtual void exitEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
