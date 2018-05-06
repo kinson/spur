@@ -19,8 +19,14 @@ public:
   virtual void enterProg(ParsePragmasParser::ProgContext * /*ctx*/) override { }
   virtual void exitProg(ParsePragmasParser::ProgContext * /*ctx*/) override { }
 
-  virtual void enterPragma(ParsePragmasParser::PragmaContext * /*ctx*/) override { }
-  virtual void exitPragma(ParsePragmasParser::PragmaContext * /*ctx*/) override { }
+  virtual void enterStatement(ParsePragmasParser::StatementContext * /*ctx*/) override { }
+  virtual void exitStatement(ParsePragmasParser::StatementContext * /*ctx*/) override { }
+
+  virtual void enterCustomPrag(ParsePragmasParser::CustomPragContext * /*ctx*/) override { }
+  virtual void exitCustomPrag(ParsePragmasParser::CustomPragContext * /*ctx*/) override { }
+
+  virtual void enterOpenMPPrag(ParsePragmasParser::OpenMPPragContext * /*ctx*/) override { }
+  virtual void exitOpenMPPrag(ParsePragmasParser::OpenMPPragContext * /*ctx*/) override { }
 
   virtual void enterNamePrag(ParsePragmasParser::NamePragContext * /*ctx*/) override { }
   virtual void exitNamePrag(ParsePragmasParser::NamePragContext * /*ctx*/) override { }
@@ -33,6 +39,9 @@ public:
 
   virtual void enterRunsPrag(ParsePragmasParser::RunsPragContext * /*ctx*/) override { }
   virtual void exitRunsPrag(ParsePragmasParser::RunsPragContext * /*ctx*/) override { }
+
+  virtual void enterTimePrag(ParsePragmasParser::TimePragContext * /*ctx*/) override { }
+  virtual void exitTimePrag(ParsePragmasParser::TimePragContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }

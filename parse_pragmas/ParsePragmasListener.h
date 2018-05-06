@@ -17,8 +17,14 @@ public:
   virtual void enterProg(ParsePragmasParser::ProgContext *ctx) = 0;
   virtual void exitProg(ParsePragmasParser::ProgContext *ctx) = 0;
 
-  virtual void enterPragma(ParsePragmasParser::PragmaContext *ctx) = 0;
-  virtual void exitPragma(ParsePragmasParser::PragmaContext *ctx) = 0;
+  virtual void enterStatement(ParsePragmasParser::StatementContext *ctx) = 0;
+  virtual void exitStatement(ParsePragmasParser::StatementContext *ctx) = 0;
+
+  virtual void enterCustomPrag(ParsePragmasParser::CustomPragContext *ctx) = 0;
+  virtual void exitCustomPrag(ParsePragmasParser::CustomPragContext *ctx) = 0;
+
+  virtual void enterOpenMPPrag(ParsePragmasParser::OpenMPPragContext *ctx) = 0;
+  virtual void exitOpenMPPrag(ParsePragmasParser::OpenMPPragContext *ctx) = 0;
 
   virtual void enterNamePrag(ParsePragmasParser::NamePragContext *ctx) = 0;
   virtual void exitNamePrag(ParsePragmasParser::NamePragContext *ctx) = 0;
@@ -31,6 +37,9 @@ public:
 
   virtual void enterRunsPrag(ParsePragmasParser::RunsPragContext *ctx) = 0;
   virtual void exitRunsPrag(ParsePragmasParser::RunsPragContext *ctx) = 0;
+
+  virtual void enterTimePrag(ParsePragmasParser::TimePragContext *ctx) = 0;
+  virtual void exitTimePrag(ParsePragmasParser::TimePragContext *ctx) = 0;
 
 
 };

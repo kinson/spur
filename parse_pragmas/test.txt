@@ -1,2 +1,4 @@
 ## NAME sam
 ## MEM 200G
+#pragma 2
+## TIME 30

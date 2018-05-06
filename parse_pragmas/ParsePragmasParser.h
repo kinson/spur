@@ -12,12 +12,12 @@
 class  ParsePragmasParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, PBEGIN = 5, PEND = 6, CONDITION = 7, 
-    NEWLINE = 8, WS = 9
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, OPENMPBEGIN = 6, PBEGIN = 7, 
+    CONDITION = 8, NEWLINE = 9, WS = 10, END = 11, ErrorCharacter = 12
   };
 
   enum {
-    RuleProg = 0, RulePragma = 1, RuleDef = 2
+    RuleProg = 0, RuleStatement = 1, RulePragma = 2, RuleDef = 3
   };
 
   ParsePragmasParser(antlr4::TokenStream *input);
@@ -31,6 +31,7 @@ public:
 
 
   class ProgContext;
+  class StatementContext;
   class PragmaContext;
   class DefContext; 
 
@@ -38,8 +39,8 @@ public:
   public:
     ProgContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<PragmaContext *> pragma();
-    PragmaContext* pragma(size_t i);
+    std::vector<StatementContext *> statement();
+    StatementContext* statement(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -48,18 +49,57 @@ public:
 
   ProgContext* prog();
 
-  class  PragmaContext : public antlr4::ParserRuleContext {
+  class  StatementContext : public antlr4::ParserRuleContext {
   public:
-    PragmaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    StatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *PBEGIN();
-    DefContext *def();
-    antlr4::tree::TerminalNode *CONDITION();
+    PragmaContext *pragma();
     antlr4::tree::TerminalNode *NEWLINE();
+    std::vector<antlr4::tree::TerminalNode *> CONDITION();
+    antlr4::tree::TerminalNode* CONDITION(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
    
+  };
+
+  StatementContext* statement();
+
+  class  PragmaContext : public antlr4::ParserRuleContext {
+  public:
+    PragmaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    PragmaContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(PragmaContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
+    virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  OpenMPPragContext : public PragmaContext {
+  public:
+    OpenMPPragContext(PragmaContext *ctx);
+
+    antlr4::tree::TerminalNode *OPENMPBEGIN();
+    antlr4::tree::TerminalNode *NEWLINE();
+    std::vector<antlr4::tree::TerminalNode *> CONDITION();
+    antlr4::tree::TerminalNode* CONDITION(size_t i);
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+  };
+
+  class  CustomPragContext : public PragmaContext {
+  public:
+    CustomPragContext(PragmaContext *ctx);
+
+    antlr4::tree::TerminalNode *PBEGIN();
+    DefContext *def();
+    antlr4::tree::TerminalNode *CONDITION();
+    antlr4::tree::TerminalNode *NEWLINE();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
   };
 
   PragmaContext* pragma();
@@ -88,6 +128,14 @@ public:
   class  PartitionPragContext : public DefContext {
   public:
     PartitionPragContext(DefContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+  };
+
+  class  TimePragContext : public DefContext {
+  public:
+    TimePragContext(DefContext *ctx);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
