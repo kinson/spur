@@ -20,7 +20,6 @@ class App extends Component {
     ev.preventDefault();
 
     const data = new FormData();
-    debugger
     data.append('file', uploadInput.files[0]);
     
 
@@ -28,22 +27,24 @@ class App extends Component {
       method: 'POST',
       body: data,
     }).then((response) => {
-      // this.setState({ imageURL: `http://localhost:8000/${body.file}` });
-      console.log(response);
+      response.text().then((body) => {
+        this.setState({ sbatchText: body });
+      });
     });
-  }
-
-  handleImageChange(data) {
-    console.log('called');
-    this.setState({ uploadFile: data });
-  }
+   }
 
   render() {
+    const appStyles = {
+      marginTop: '100px'
+    };
+
     return (
-      <div className="App">
-        <FileUpload handleUpload={this.handleUploadImage} setUploadFile={this.handleImageChange.bind(this)}/>
+      <div className="App"
+        style={appStyles}
+      >
+        <FileUpload handleUpload={this.handleUploadImage}/>
         <br />
-        <TextBlock />
+        <TextBlock text={this.state.sbatchText}/>
       </div>
     );
   }

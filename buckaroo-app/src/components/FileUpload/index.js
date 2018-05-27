@@ -13,27 +13,67 @@ export default class FileUpload extends Component {
   }
 
   uploadFile(ev) {
-    console.log(this.state);
-    console.log(this.props);
-    // this.props.setUploadFile(this.state.uploadInput);
-    this.props.handleUpload(ev, this.state.uploadInput);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('called2');
-    this.props.setUploadFile(this.state.uploadInput);
+    debugger
+    console.log(this.uploadInput.files);
+    this.props.handleUpload(ev, this.uploadInput);
   }
 
   render() {
+    const inputStyle = {
+      width: '0.1px',
+      height: '0.1px',
+      opacity: '0',
+      overflow: 'hidden',
+      position: 'absolute',
+      zIndex: '-1'
+    };
+
+    const labelStyle = {
+      fontSize: '1.25em',
+      fontWeight: '700',
+      color: 'white',
+      backgroundColor: 'red',
+      display: 'inline-block',
+      padding: '10px',
+      borderRadius: '3px',
+      boxShadow: '3px 2px 1px #333'
+    }
+
+    const fileNameStyle = {
+      fontSize: '1.2em',
+      borderRadius: '3px',
+      height: '20px',
+      width: '180px'
+    };
+
+    const submitStyle = {
+      fontSize: '1.5em',
+      backgroundColor: 'blue',
+      width: '300px',
+      height: '45px',
+      color: 'white',
+      borderRadius: '3px',
+      boxShadow: '3px 2px 1px #333'
+    }
 
     return (
       <form onSubmit={this.uploadFile.bind(this)}>
       <div>
-        <input ref={(ref) => { this.state.uploadInput = ref; }} type="file" />
+        <input
+          id="file"
+          name="file"
+          ref={(ref) => { this.uploadInput = ref; }} 
+          type="file"
+          style={inputStyle} />
+        <label htmlFor="file" style={labelStyle}>Choose a file</label>
       </div>
       <br />
       <div>
-        <button>Upload</button>
+        <input type="text" placeholder="File Name" style={fileNameStyle} />
+      </div>
+      <br />
+      <div>
+        <button style={submitStyle} >Upload</button>
       </div>
     </form>
     )
