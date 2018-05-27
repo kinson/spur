@@ -7,7 +7,8 @@ export default class FileUpload extends Component {
       height: '400px',
       borderRadius: '3px',
       visibility: this.props.text === '' ? 'hidden' : 'visible',
-    }
+      color: this.props.isError === true ? 'red': 'black'
+    };
 
     return (
       <textarea

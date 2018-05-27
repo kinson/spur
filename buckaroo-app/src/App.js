@@ -10,7 +10,8 @@ class App extends Component {
 
     this.state = {
       sbatchText: '',
-      uploadFile: ''
+      uploadFile: '',
+      isError: false
     };
 
     this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -20,7 +21,6 @@ class App extends Component {
     ev.preventDefault();
 
     const data = new FormData();
-    debugger
     data.append('file', uploadInput);
     
 
@@ -29,7 +29,11 @@ class App extends Component {
       body: data,
     }).then((response) => {
       response.text().then((body) => {
-        this.setState({ sbatchText: body });
+        let newState = { isError: false };
+        if (response.status !== 202) {
+          newState = { isError: true}
+        }
+        this.setState({ ...newState, sbatchText: body });
       });
     });
    }
@@ -45,7 +49,7 @@ class App extends Component {
       >
         <FileUpload handleUpload={this.handleUploadImage}/>
         <br />
-        <TextBlock text={this.state.sbatchText}/>
+        <TextBlock text={this.state.sbatchText} isError={this.state.isError}/>
       </div>
     );
   }

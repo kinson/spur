@@ -18,7 +18,12 @@ exports.plugin = {
       },
       handler: (request, h) => {
         const input = request.payload.file.toString('utf-8');
-        const pragmas = getPragmas(input);
+        let pragmas = {};
+        try {
+          pragmas = getPragmas(input);
+        } catch (err) {
+          return h.response(err.message).code(400);
+        }
         const sbatch = generateSbatch(pragmas, 'first.c');
 
         return h.response(sbatch).code(202);

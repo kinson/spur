@@ -16,10 +16,15 @@ KeyPrinter.prototype.constructor = KeyPrinter;
 
 KeyPrinter.prototype.enterProg = function(ctx) {
     this.pragmas = {};
+    this.hasOpenMPPragma = false;
   };
 
 KeyPrinter.prototype.enterCustomPrag = function(ctx) {
   this.customPragValue = ctx.CONDITION().getText();
+};
+
+KeyPrinter.prototype.enterOpenMPPrag = function(ctx) {
+  this.hasOpenMPPragma = true;
 };
 
 KeyPrinter.prototype.enterNamePrag = function(ctx) {
@@ -52,6 +57,10 @@ function getPragmas(input) {
 
   var printer = new KeyPrinter();
   antlr.tree.ParseTreeWalker.DEFAULT.walk(printer, tree);
+
+  if (!printer.hasOpenMPPragma) {
+    throw new Error('Uploaded code does not contain openMP directive');
+  }
 
   return printer.pragmas;
 }
