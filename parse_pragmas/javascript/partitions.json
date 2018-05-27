@@ -1,0 +1,152 @@
+[
+  {
+    "name": "development",
+    "quantity": 2,
+    "exclusivity": "partial",
+    "duration": 2,
+    "cores": 36,
+    "memory": 256,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 14
+  },
+  {
+    "name": "htc",
+    "quantity": 52,
+    "exclusivity": "shared",
+    "duration": 24,
+    "cores": 1,
+    "memory": 8,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 15
+  },
+  {
+    "name": "standard-mem-s",
+    "quantity": 80,
+    "exclusivity": "exclusive",
+    "duration": 24,
+    "cores": 36,
+    "memory": 256,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 8
+  },
+  {
+    "name": "standard-mem-m",
+    "quantity": 24,
+    "exclusivity": "exclusive",
+    "duration": 168,
+    "cores": 36,
+    "memory": 256,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 7
+  },
+  {
+    "name": "standard-mem-l",
+    "quantity": 18,
+    "exclusivity": "exclusive",
+    "duration": 720,
+    "cores": 36,
+    "memory": 256,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 6
+  },
+  {
+    "name": "medium-mem-1-s",
+    "quantity": 20,
+    "exclusivity": "exclusive",
+    "duration": 24,
+    "cores": 36,
+    "memory": 768,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 5
+  },
+  {
+    "name": "medium-mem-1-m",
+    "quantity": 10,
+    "exclusivity": "exclusive",
+    "duration": 168,
+    "cores": 36,
+    "memory": 768,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 4
+  },
+  {
+    "name": "medium-mem-1-l",
+    "quantity": 5,
+    "exclusivity": "exclusive",
+    "duration": 720,
+    "cores": 36,
+    "memory": 768,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 3
+  },
+  {
+    "name": "medium-mem-2",
+    "quantity": 4,
+    "exclusivity": "exclusive",
+    "duration": 336,
+    "cores": 24,
+    "memory": 768,
+    "additonal_notes": "2 Intel Xeon E5-2680 v3 CPUs",
+    "_rank": 10
+  },
+  {
+    "name": "high-mem-1",
+    "quantity": 5,
+    "exclusivity": "exclusive",
+    "duration": 336,
+    "cores": 36,
+    "memory": 1538,
+    "additonal_notes": "2 Intel Xeon E5-2695 v4 CPUs",
+    "_rank": 2
+  },
+  {
+    "name": "high-mem-2",
+    "quantity": 6,
+    "exclusivity": "exclusive",
+    "duration": 336,
+    "cores": 40,
+    "memory": 1538,
+    "additonal_notes": "4 Intel Xeon E7-8891 CPUs",
+    "_rank": 1
+  },
+  {
+    "name": "mic",
+    "quantity": 36,
+    "exclusivity": "exclusive",
+    "duration": 168,
+    "cores": 64,
+    "memory": 384,
+    "additonal_notes": "1 Intel Xeon Phi 7230 CPU",
+    "_rank": 9
+  },
+  {
+    "name": "gpgpu-1",
+    "quantity": 36,
+    "exclusivity": "exclusive",
+    "duration": 168,
+    "cores": 36,
+    "memory": 256,
+    "additonal_notes": "1 NVIDIA P100 GPU",
+    "_rank": 11
+  },
+  {
+    "name": "gpgpu-2",
+    "quantity": 1,
+    "exclusivity": "exclusive",
+    "duration": 168,
+    "cores": 12,
+    "memory": 31,
+    "additonal_notes": "4 NVIDIA K80 GPUs",
+    "_rank": 12
+  },
+  {
+    "name": "dcv",
+    "quantity": 5,
+    "exclusivity": "exclusive",
+    "duration": 24,
+    "cores": 36,
+    "memory": 256,
+    "additonal_notes": "1 NVIDIA M5000 GPU",
+    "_rank": 13
+  }
+]

@@ -1,13 +1,10 @@
 'use strict';
 
 var antlr = require('antlr4/index');
-var fs = require('fs');
 
-var ParsePragmasLexer = require('./ParsePragmasLexer');
-var ParsePragmasParser = require('./ParsePragmasParser');
-var ParsePragmasListener = require('./ParsePragmasListener').ParsePragmasListener;
-
-var input = fs.readFileSync(process.argv[2], { encoding: 'utf-8' });
+var ParsePragmasLexer = require('./antlr/ParsePragmasLexer');
+var ParsePragmasParser = require('./antlr/ParsePragmasParser');
+var ParsePragmasListener = require('./antlr/ParsePragmasListener').ParsePragmasListener;
 
 var KeyPrinter = function() {
   ParsePragmasListener.call(this); // inherit default listener
@@ -44,17 +41,19 @@ KeyPrinter.prototype.enterTimePrag = function(ctx) {
   }
 };
 
-KeyPrinter.prototype.exitProg = function(ctx) {
-    console.log(this.pragmas);
-};
+function getPragmas(input) {
+  var chars = new antlr.InputStream(input);
 
-var chars = new antlr.InputStream(input);
+  var lexer = new ParsePragmasLexer.ParsePragmasLexer(chars);
+  var tokens = new antlr.CommonTokenStream(lexer);
+  var parser = new ParsePragmasParser.ParsePragmasParser(tokens);
+  parser.buildParseTrees = true;
+  var tree = parser.prog();
 
-var lexer = new ParsePragmasLexer.ParsePragmasLexer(chars);
-var tokens = new antlr.CommonTokenStream(lexer);
-var parser = new ParsePragmasParser.ParsePragmasParser(tokens);
-parser.buildParseTrees = true;
-var tree = parser.prog();
+  var printer = new KeyPrinter();
+  antlr.tree.ParseTreeWalker.DEFAULT.walk(printer, tree);
 
-var printer = new KeyPrinter();
-antlr.tree.ParseTreeWalker.DEFAULT.walk(printer, tree);
+  return printer.pragmas;
+}
+
+module.exports = getPragmas;

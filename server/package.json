@@ -1,0 +1,22 @@
+{
+  "name": "buckaroo-server",
+  "version": "1.0.0",
+  "description": "server to handle buckaroo connections",
+  "main": "index.js",
+  "author": "Sam Hunter",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "antlr4": "^4.7.1",
+    "glob": "^7.1.2",
+    "handlebars": "^4.0.11",
+    "hapi": "^17.5.0",
+    "hoek": "^5.0.3",
+    "inert": "^5.1.0",
+    "path": "^0.12.7",
+    "vision": "^5.3.2"
+  }
+}
