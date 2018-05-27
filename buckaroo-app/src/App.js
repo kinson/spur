@@ -20,7 +20,8 @@ class App extends Component {
     ev.preventDefault();
 
     const data = new FormData();
-    data.append('file', uploadInput.files[0]);
+    debugger
+    data.append('file', uploadInput);
     
 
     fetch('http://localhost:3000/upload', {
