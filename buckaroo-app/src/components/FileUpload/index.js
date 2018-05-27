@@ -5,17 +5,22 @@ export default class FileUpload extends Component {
     super(props);
 
     this.state = {
-      imageURL: '',
+      fileName: '',
       uploadInput: ''
     };
-
-    // this.handleUploadImage = this.handleUploadImage.bind(this);
   }
 
   uploadFile(ev) {
-    debugger
-    console.log(this.uploadInput.files);
-    this.props.handleUpload(ev, this.uploadInput);
+    this.props.handleUpload(ev, this.state.uploadInput);
+  }
+
+  onFileInputChange(event) {
+    if (event.target.files[0]) {
+      this.setState({
+        fileName: event.target.files[0].name,
+        uploadInput: event.target.files[0]
+      })
+    }
   }
 
   render() {
@@ -43,7 +48,10 @@ export default class FileUpload extends Component {
       fontSize: '1.2em',
       borderRadius: '3px',
       height: '20px',
-      width: '180px'
+      width: '180px',
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      textAlign: 'center'
     };
 
     const submitStyle = {
@@ -62,14 +70,14 @@ export default class FileUpload extends Component {
         <input
           id="file"
           name="file"
-          ref={(ref) => { this.uploadInput = ref; }} 
+          onChange={this.onFileInputChange.bind(this)}
           type="file"
           style={inputStyle} />
         <label htmlFor="file" style={labelStyle}>Choose a file</label>
       </div>
       <br />
       <div>
-        <input type="text" placeholder="File Name" style={fileNameStyle} />
+        <p style={fileNameStyle}> {this.state.fileName} </p>
       </div>
       <br />
       <div>

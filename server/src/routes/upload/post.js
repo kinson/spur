@@ -20,7 +20,6 @@ exports.plugin = {
         const input = request.payload.file.toString('utf-8');
         const pragmas = getPragmas(input);
         const sbatch = generateSbatch(pragmas, 'first.c');
-        console.log('responding');
 
         return h.response(sbatch).code(202);
       }
