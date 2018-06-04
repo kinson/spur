@@ -10,9 +10,6 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { railscasts } from 'react-syntax-highlighter/styles/hljs';
 
 const styles = theme => ({
-  card: {
-    minWidth: 450,
-  },
   fileName: {
     marginBottom: 16,
     fontSize: 14,
