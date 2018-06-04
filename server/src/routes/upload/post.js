@@ -13,7 +13,7 @@ exports.plugin = {
       path: '/upload',
       options: {
         cors: {
-          origin: ['*'],
+          origin: ['http://localhost:3001'],
         },
       },
       handler: (request, h) => {

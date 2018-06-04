@@ -21,6 +21,8 @@
         "unordered_set": "cpp",
         "vector": "cpp",
         "algorithm": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "__locale": "c",
+        "bitset": "c"
     }
 }
