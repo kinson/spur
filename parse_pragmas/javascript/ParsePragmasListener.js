@@ -1,4 +1,4 @@
-// Generated from ParsePragmas.g4 by ANTLR 4.7.1
+// Generated from ../ParsePragmas.g4 by ANTLR 4.7.1
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 
@@ -89,6 +89,15 @@ ParsePragmasListener.prototype.enterTimePrag = function(ctx) {
 
 // Exit a parse tree produced by ParsePragmasParser#timePrag.
 ParsePragmasListener.prototype.exitTimePrag = function(ctx) {
+};
+
+
+// Enter a parse tree produced by ParsePragmasParser#emailPrag.
+ParsePragmasListener.prototype.enterEmailPrag = function(ctx) {
+};
+
+// Exit a parse tree produced by ParsePragmasParser#emailPrag.
+ParsePragmasListener.prototype.exitEmailPrag = function(ctx) {
 };
 
 

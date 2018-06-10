@@ -13,13 +13,14 @@ def:  'NAME'        #namePrag
     | 'PARTITION'   #partitionPrag
     | 'RUNS'        #runsPrag
     | 'TIME'        #timePrag
+    | 'EMAIL'       #emailPrag
     ;
 
 
 OPENMPBEGIN: '#pragma' ;
 
 PBEGIN: '// cprag' ;
-CONDITION: [*,;:&%<>()#a-zA-Z0-9{}/=_"+\\.\-\][]+;
+CONDITION: [@*,;:&%<>()#a-zA-Z0-9{}/=_"+\\.\-\][]+;
 NEWLINE: [\r\n] ;
 WS : [ \t]+ -> skip ;
 END : (EOF) -> skip;

@@ -46,40 +46,52 @@ class App extends Component {
 
     this.state = {
       sbatchText: '',
-      uploadFile: '',
+      uploadFileName: '',
       isError: false,
       partitions: [],
       snackBarOpenSuccess: false,
-      snackBarOpenError: false
+      snackBarOpenError: false,
+      sbatchPath: '',
+      tooLongToRun: null,
     };
 
     this.handleUploadImage = this.handleUploadImage.bind(this);
   }
 
-  handleUploadImage(ev, uploadInput) {
+  handleUploadImage(ev, uploadInput, fileName, secret) {
     ev.preventDefault();
+
+    this.setState({
+      uploadFileName: fileName
+    });
 
     const data = new FormData();
     data.append('file', uploadInput);
-    
+    data.append('fileName', fileName);
+    data.append('secret', secret);
 
-    fetch('http://localhost:3000/upload', {
+    fetch(`${process.env.HOSTSITE}/upload`, {
       method: 'POST',
       body: data,
     }).then((response) => {
-      response.text().then((body) => {
+      response.json().then((body) => {
         let newState = { isError: false, snackBarOpenSuccess: true };
         if (response.status !== 202) {
           newState = { 
             isError: true, 
             snackBarOpenError: true,
-            errorMessage: body
+            errorMessage: body.message
+          }
+        } else {
+          newState = {
+            ...newState,
+            successMessage: 'File Uploaded',
+            sbatchText: body.sbatch,
+            sbatchPath: body.fpath,
+            tooLongToRun: body.tooLongToRun
           }
         }
-        this.setState({ 
-          ...newState, 
-          sbatchText: body
-        });
+        this.setState(newState);
       });
     });
    }
@@ -93,7 +105,7 @@ class App extends Component {
   };
 
   fetchAvailablePartitions() {
-    fetch('http://localhost:3000/api/partitions', {
+    fetch(`${process.env.HOSTSITE}/api/partitions`, {
       method: 'POST'
     }).then((response) => {
       response.json().then(body => {
@@ -114,6 +126,34 @@ class App extends Component {
         snackBarOpenError: true,
         errorMessage: 'Unable to fetch available partitions'
       })
+    });
+  }
+
+  runTestJob(partition) {
+    const data = {
+      filePath: this.state.sbatchPath,
+      partition,
+      fileName: this.state.uploadFileName
+    };
+
+    fetch(`${process.env.HOSTSITE}/api/run`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then((response) => {
+      response.json().then(body => {
+        let newState = { isError: false, snackBarOpenSuccess: true, successMessage: 'Job submitted to ManeFrame II' };
+        if (response.status !== 200) {
+          newState = {
+            isError: true,
+            snackBarOpenError: true,
+            errorMessage: body.message
+          }
+        }
+        this.setState(newState);
+      });
     });
   }
 
@@ -143,7 +183,10 @@ class App extends Component {
             </Grid>
 
             <Grid item xs={12} md={10} lg={8}>
-              <PartitionsCard partitions={this.state.partitions}/>
+              <PartitionsCard 
+                partitions={this.state.partitions}
+                runTestJob={this.runTestJob.bind(this)}
+              />
             </Grid>
           </Grid>
 
@@ -161,7 +204,7 @@ class App extends Component {
         >
           <SnackbarContent
             className={classes.success}
-            message={<span id="message-id">File uploaded</span>}
+            message={this.state.successMessage}
             action={[
               <IconButton
                 key="close"

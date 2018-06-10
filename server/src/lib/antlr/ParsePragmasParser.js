@@ -5,37 +5,38 @@ var ParsePragmasListener = require('./ParsePragmasListener').ParsePragmasListene
 var grammarFileName = "ParsePragmas.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u000e0\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u0003\u000f1\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
     "\u0004\u0004\u0005\t\u0005\u0003\u0002\u0006\u0002\f\n\u0002\r\u0002",
     "\u000e\u0002\r\u0003\u0003\u0003\u0003\u0007\u0003\u0012\n\u0003\f\u0003",
     "\u000e\u0003\u0015\u000b\u0003\u0003\u0003\u0005\u0003\u0018\n\u0003",
     "\u0003\u0004\u0003\u0004\u0003\u0004\u0003\u0004\u0003\u0004\u0003\u0004",
     "\u0003\u0004\u0007\u0004!\n\u0004\f\u0004\u000e\u0004$\u000b\u0004\u0003",
     "\u0004\u0005\u0004\'\n\u0004\u0003\u0005\u0003\u0005\u0003\u0005\u0003",
-    "\u0005\u0003\u0005\u0005\u0005.\n\u0005\u0003\u0005\u0002\u0002\u0006",
-    "\u0002\u0004\u0006\b\u0002\u0002\u00024\u0002\u000b\u0003\u0002\u0002",
-    "\u0002\u0004\u0017\u0003\u0002\u0002\u0002\u0006&\u0003\u0002\u0002",
-    "\u0002\b-\u0003\u0002\u0002\u0002\n\f\u0005\u0004\u0003\u0002\u000b",
-    "\n\u0003\u0002\u0002\u0002\f\r\u0003\u0002\u0002\u0002\r\u000b\u0003",
-    "\u0002\u0002\u0002\r\u000e\u0003\u0002\u0002\u0002\u000e\u0003\u0003",
-    "\u0002\u0002\u0002\u000f\u0018\u0005\u0006\u0004\u0002\u0010\u0012\u0007",
-    "\n\u0002\u0002\u0011\u0010\u0003\u0002\u0002\u0002\u0012\u0015\u0003",
-    "\u0002\u0002\u0002\u0013\u0011\u0003\u0002\u0002\u0002\u0013\u0014\u0003",
-    "\u0002\u0002\u0002\u0014\u0016\u0003\u0002\u0002\u0002\u0015\u0013\u0003",
-    "\u0002\u0002\u0002\u0016\u0018\u0007\u000b\u0002\u0002\u0017\u000f\u0003",
-    "\u0002\u0002\u0002\u0017\u0013\u0003\u0002\u0002\u0002\u0018\u0005\u0003",
-    "\u0002\u0002\u0002\u0019\u001a\u0007\t\u0002\u0002\u001a\u001b\u0005",
-    "\b\u0005\u0002\u001b\u001c\u0007\n\u0002\u0002\u001c\u001d\u0007\u000b",
-    "\u0002\u0002\u001d\'\u0003\u0002\u0002\u0002\u001e\"\u0007\b\u0002\u0002",
-    "\u001f!\u0007\n\u0002\u0002 \u001f\u0003\u0002\u0002\u0002!$\u0003\u0002",
-    "\u0002\u0002\" \u0003\u0002\u0002\u0002\"#\u0003\u0002\u0002\u0002#",
-    "%\u0003\u0002\u0002\u0002$\"\u0003\u0002\u0002\u0002%\'\u0007\u000b",
-    "\u0002\u0002&\u0019\u0003\u0002\u0002\u0002&\u001e\u0003\u0002\u0002",
-    "\u0002\'\u0007\u0003\u0002\u0002\u0002(.\u0007\u0003\u0002\u0002).\u0007",
-    "\u0004\u0002\u0002*.\u0007\u0005\u0002\u0002+.\u0007\u0006\u0002\u0002",
-    ",.\u0007\u0007\u0002\u0002-(\u0003\u0002\u0002\u0002-)\u0003\u0002\u0002",
-    "\u0002-*\u0003\u0002\u0002\u0002-+\u0003\u0002\u0002\u0002-,\u0003\u0002",
-    "\u0002\u0002.\t\u0003\u0002\u0002\u0002\b\r\u0013\u0017\"&-"].join("");
+    "\u0005\u0003\u0005\u0003\u0005\u0005\u0005/\n\u0005\u0003\u0005\u0002",
+    "\u0002\u0006\u0002\u0004\u0006\b\u0002\u0002\u00026\u0002\u000b\u0003",
+    "\u0002\u0002\u0002\u0004\u0017\u0003\u0002\u0002\u0002\u0006&\u0003",
+    "\u0002\u0002\u0002\b.\u0003\u0002\u0002\u0002\n\f\u0005\u0004\u0003",
+    "\u0002\u000b\n\u0003\u0002\u0002\u0002\f\r\u0003\u0002\u0002\u0002\r",
+    "\u000b\u0003\u0002\u0002\u0002\r\u000e\u0003\u0002\u0002\u0002\u000e",
+    "\u0003\u0003\u0002\u0002\u0002\u000f\u0018\u0005\u0006\u0004\u0002\u0010",
+    "\u0012\u0007\u000b\u0002\u0002\u0011\u0010\u0003\u0002\u0002\u0002\u0012",
+    "\u0015\u0003\u0002\u0002\u0002\u0013\u0011\u0003\u0002\u0002\u0002\u0013",
+    "\u0014\u0003\u0002\u0002\u0002\u0014\u0016\u0003\u0002\u0002\u0002\u0015",
+    "\u0013\u0003\u0002\u0002\u0002\u0016\u0018\u0007\f\u0002\u0002\u0017",
+    "\u000f\u0003\u0002\u0002\u0002\u0017\u0013\u0003\u0002\u0002\u0002\u0018",
+    "\u0005\u0003\u0002\u0002\u0002\u0019\u001a\u0007\n\u0002\u0002\u001a",
+    "\u001b\u0005\b\u0005\u0002\u001b\u001c\u0007\u000b\u0002\u0002\u001c",
+    "\u001d\u0007\f\u0002\u0002\u001d\'\u0003\u0002\u0002\u0002\u001e\"\u0007",
+    "\t\u0002\u0002\u001f!\u0007\u000b\u0002\u0002 \u001f\u0003\u0002\u0002",
+    "\u0002!$\u0003\u0002\u0002\u0002\" \u0003\u0002\u0002\u0002\"#\u0003",
+    "\u0002\u0002\u0002#%\u0003\u0002\u0002\u0002$\"\u0003\u0002\u0002\u0002",
+    "%\'\u0007\f\u0002\u0002&\u0019\u0003\u0002\u0002\u0002&\u001e\u0003",
+    "\u0002\u0002\u0002\'\u0007\u0003\u0002\u0002\u0002(/\u0007\u0003\u0002",
+    "\u0002)/\u0007\u0004\u0002\u0002*/\u0007\u0005\u0002\u0002+/\u0007\u0006",
+    "\u0002\u0002,/\u0007\u0007\u0002\u0002-/\u0007\b\u0002\u0002.(\u0003",
+    "\u0002\u0002\u0002.)\u0003\u0002\u0002\u0002.*\u0003\u0002\u0002\u0002",
+    ".+\u0003\u0002\u0002\u0002.,\u0003\u0002\u0002\u0002.-\u0003\u0002\u0002",
+    "\u0002/\t\u0003\u0002\u0002\u0002\b\r\u0013\u0017\"&."].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -45,9 +46,9 @@ var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new a
 var sharedContextCache = new antlr4.PredictionContextCache();
 
 var literalNames = [ null, "'NAME'", "'MEM'", "'PARTITION'", "'RUNS'", "'TIME'", 
-                     "'#pragma'", "'// cprag'" ];
+                     "'EMAIL'", "'#pragma'", "'// cprag'" ];
 
-var symbolicNames = [ null, null, null, null, null, null, "OPENMPBEGIN", 
+var symbolicNames = [ null, null, null, null, null, null, null, "OPENMPBEGIN", 
                       "PBEGIN", "CONDITION", "NEWLINE", "WS", "END", "ErrorCharacter" ];
 
 var ruleNames =  [ "prog", "statement", "pragma", "def" ];
@@ -76,13 +77,14 @@ ParsePragmasParser.T__1 = 2;
 ParsePragmasParser.T__2 = 3;
 ParsePragmasParser.T__3 = 4;
 ParsePragmasParser.T__4 = 5;
-ParsePragmasParser.OPENMPBEGIN = 6;
-ParsePragmasParser.PBEGIN = 7;
-ParsePragmasParser.CONDITION = 8;
-ParsePragmasParser.NEWLINE = 9;
-ParsePragmasParser.WS = 10;
-ParsePragmasParser.END = 11;
-ParsePragmasParser.ErrorCharacter = 12;
+ParsePragmasParser.T__5 = 6;
+ParsePragmasParser.OPENMPBEGIN = 7;
+ParsePragmasParser.PBEGIN = 8;
+ParsePragmasParser.CONDITION = 9;
+ParsePragmasParser.NEWLINE = 10;
+ParsePragmasParser.WS = 11;
+ParsePragmasParser.END = 12;
+ParsePragmasParser.ErrorCharacter = 13;
 
 ParsePragmasParser.RULE_prog = 0;
 ParsePragmasParser.RULE_statement = 1;
@@ -499,6 +501,30 @@ PartitionPragContext.prototype.exitRule = function(listener) {
 };
 
 
+function EmailPragContext(parser, ctx) {
+	DefContext.call(this, parser);
+    DefContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+EmailPragContext.prototype = Object.create(DefContext.prototype);
+EmailPragContext.prototype.constructor = EmailPragContext;
+
+ParsePragmasParser.EmailPragContext = EmailPragContext;
+
+EmailPragContext.prototype.enterRule = function(listener) {
+    if(listener instanceof ParsePragmasListener ) {
+        listener.enterEmailPrag(this);
+	}
+};
+
+EmailPragContext.prototype.exitRule = function(listener) {
+    if(listener instanceof ParsePragmasListener ) {
+        listener.exitEmailPrag(this);
+	}
+};
+
+
 function TimePragContext(parser, ctx) {
 	DefContext.call(this, parser);
     DefContext.prototype.copyFrom.call(this, ctx);
@@ -579,7 +605,7 @@ ParsePragmasParser.prototype.def = function() {
     var localctx = new DefContext(this, this._ctx, this.state);
     this.enterRule(localctx, 6, ParsePragmasParser.RULE_def);
     try {
-        this.state = 43;
+        this.state = 44;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case ParsePragmasParser.T__0:
@@ -611,6 +637,12 @@ ParsePragmasParser.prototype.def = function() {
             this.enterOuterAlt(localctx, 5);
             this.state = 42;
             this.match(ParsePragmasParser.T__4);
+            break;
+        case ParsePragmasParser.T__5:
+            localctx = new EmailPragContext(this, localctx);
+            this.enterOuterAlt(localctx, 6);
+            this.state = 43;
+            this.match(ParsePragmasParser.T__5);
             break;
         default:
             throw new antlr4.error.NoViableAltException(this);

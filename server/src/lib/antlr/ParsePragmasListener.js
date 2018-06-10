@@ -92,5 +92,14 @@ ParsePragmasListener.prototype.exitTimePrag = function(ctx) {
 };
 
 
+// Enter a parse tree produced by ParsePragmasParser#emailPrag.
+ParsePragmasListener.prototype.enterEmailPrag = function(ctx) {
+};
+
+// Exit a parse tree produced by ParsePragmasParser#emailPrag.
+ParsePragmasListener.prototype.exitEmailPrag = function(ctx) {
+};
+
+
 
 exports.ParsePragmasListener = ParsePragmasListener;

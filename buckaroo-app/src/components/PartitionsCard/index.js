@@ -38,7 +38,13 @@ const styles = theme => ({
 });
 
 
-function generate(partitions) {
+function generate(partitions, selectPartition, selectedPartition) {
+  const style = (name) => {
+    if (selectedPartition && selectedPartition === name) {
+      return 'contained'
+    }
+    return 'outlined';
+  }
   return partitions.map(value =>
     React.cloneElement(
       <ListItem>
@@ -49,10 +55,10 @@ function generate(partitions) {
         </ListItemAvatar>
         <ListItemText
           primary={value.name}
-          secondary={`${value.nodesAvailable} nodes available`} 
+          secondary={`${value.nodesAvailable} node(s) available`} 
         />
         <ListItemSecondaryAction>
-          <Button variant="contained" color="secondary">
+          <Button variant={style(value.name)} color="secondary" onClick={selectPartition.bind(this, value.name)}>
             Select Partition
           </Button>
         </ListItemSecondaryAction>
@@ -63,6 +69,23 @@ function generate(partitions) {
 }
 
 class PartitionsCard extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedPartition: null,
+    };
+  }
+
+  selectPartition(name) {
+    console.log(name)
+    this.setState({ selectedPartition: name });
+  }
+
+  runTestJob() {
+    this.props.runTestJob(this.state.selectedPartition);
+  }
   
   render() {
     const { classes } = this.props;
@@ -84,7 +107,9 @@ class PartitionsCard extends Component {
 
           <List>
             {generate(
-              this.props.partitions
+              this.props.partitions,
+              this.selectPartition.bind(this),
+              this.state.selectedPartition
             )}
 
           </List>        
@@ -95,6 +120,8 @@ class PartitionsCard extends Component {
             <Button
               size="small"
               className={classes.submit}
+              disabled={this.state.selectedPartition == null}
+              onClick={this.runTestJob.bind(this)}
             >Run On Open Node</Button>
           </CardActions>
         </Card>

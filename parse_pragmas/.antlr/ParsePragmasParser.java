@@ -16,8 +16,8 @@ public class ParsePragmasParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, OPENMPBEGIN=6, PBEGIN=7, CONDITION=8, 
-		NEWLINE=9, WS=10, END=11, ErrorCharacter=12;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, OPENMPBEGIN=7, PBEGIN=8, 
+		CONDITION=9, NEWLINE=10, WS=11, END=12, ErrorCharacter=13;
 	public static final int
 		RULE_prog = 0, RULE_statement = 1, RULE_pragma = 2, RULE_def = 3;
 	public static final String[] ruleNames = {
@@ -25,11 +25,11 @@ public class ParsePragmasParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'NAME'", "'MEM'", "'PARTITION'", "'RUNS'", "'TIME'", "'#pragma'", 
-		"'// cprag'"
+		null, "'NAME'", "'MEM'", "'PARTITION'", "'RUNS'", "'TIME'", "'EMAIL'", 
+		"'#pragma'", "'// cprag'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, "OPENMPBEGIN", "PBEGIN", "CONDITION", 
+		null, null, null, null, null, null, null, "OPENMPBEGIN", "PBEGIN", "CONDITION", 
 		"NEWLINE", "WS", "END", "ErrorCharacter"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -305,6 +305,9 @@ public class ParsePragmasParser extends Parser {
 	public static class PartitionPragContext extends DefContext {
 		public PartitionPragContext(DefContext ctx) { copyFrom(ctx); }
 	}
+	public static class EmailPragContext extends DefContext {
+		public EmailPragContext(DefContext ctx) { copyFrom(ctx); }
+	}
 	public static class TimePragContext extends DefContext {
 		public TimePragContext(DefContext ctx) { copyFrom(ctx); }
 	}
@@ -319,7 +322,7 @@ public class ParsePragmasParser extends Parser {
 		DefContext _localctx = new DefContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_def);
 		try {
-			setState(43);
+			setState(44);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
@@ -362,6 +365,14 @@ public class ParsePragmasParser extends Parser {
 				match(T__4);
 				}
 				break;
+			case T__5:
+				_localctx = new EmailPragContext(_localctx);
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(43);
+				match(T__5);
+				}
+				break;
 			default:
 				throw new NoViableAltException(this);
 			}
@@ -378,20 +389,20 @@ public class ParsePragmasParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16\60\4\2\t\2\4\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17\61\4\2\t\2\4\3"+
 		"\t\3\4\4\t\4\4\5\t\5\3\2\6\2\f\n\2\r\2\16\2\r\3\3\3\3\7\3\22\n\3\f\3\16"+
 		"\3\25\13\3\3\3\5\3\30\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4!\n\4\f\4\16"+
-		"\4$\13\4\3\4\5\4\'\n\4\3\5\3\5\3\5\3\5\3\5\5\5.\n\5\3\5\2\2\6\2\4\6\b"+
-		"\2\2\2\64\2\13\3\2\2\2\4\27\3\2\2\2\6&\3\2\2\2\b-\3\2\2\2\n\f\5\4\3\2"+
-		"\13\n\3\2\2\2\f\r\3\2\2\2\r\13\3\2\2\2\r\16\3\2\2\2\16\3\3\2\2\2\17\30"+
-		"\5\6\4\2\20\22\7\n\2\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24"+
-		"\3\2\2\2\24\26\3\2\2\2\25\23\3\2\2\2\26\30\7\13\2\2\27\17\3\2\2\2\27\23"+
-		"\3\2\2\2\30\5\3\2\2\2\31\32\7\t\2\2\32\33\5\b\5\2\33\34\7\n\2\2\34\35"+
-		"\7\13\2\2\35\'\3\2\2\2\36\"\7\b\2\2\37!\7\n\2\2 \37\3\2\2\2!$\3\2\2\2"+
-		"\" \3\2\2\2\"#\3\2\2\2#%\3\2\2\2$\"\3\2\2\2%\'\7\13\2\2&\31\3\2\2\2&\36"+
-		"\3\2\2\2\'\7\3\2\2\2(.\7\3\2\2).\7\4\2\2*.\7\5\2\2+.\7\6\2\2,.\7\7\2\2"+
-		"-(\3\2\2\2-)\3\2\2\2-*\3\2\2\2-+\3\2\2\2-,\3\2\2\2.\t\3\2\2\2\b\r\23\27"+
-		"\"&-";
+		"\4$\13\4\3\4\5\4\'\n\4\3\5\3\5\3\5\3\5\3\5\3\5\5\5/\n\5\3\5\2\2\6\2\4"+
+		"\6\b\2\2\2\66\2\13\3\2\2\2\4\27\3\2\2\2\6&\3\2\2\2\b.\3\2\2\2\n\f\5\4"+
+		"\3\2\13\n\3\2\2\2\f\r\3\2\2\2\r\13\3\2\2\2\r\16\3\2\2\2\16\3\3\2\2\2\17"+
+		"\30\5\6\4\2\20\22\7\13\2\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23"+
+		"\24\3\2\2\2\24\26\3\2\2\2\25\23\3\2\2\2\26\30\7\f\2\2\27\17\3\2\2\2\27"+
+		"\23\3\2\2\2\30\5\3\2\2\2\31\32\7\n\2\2\32\33\5\b\5\2\33\34\7\13\2\2\34"+
+		"\35\7\f\2\2\35\'\3\2\2\2\36\"\7\t\2\2\37!\7\13\2\2 \37\3\2\2\2!$\3\2\2"+
+		"\2\" \3\2\2\2\"#\3\2\2\2#%\3\2\2\2$\"\3\2\2\2%\'\7\f\2\2&\31\3\2\2\2&"+
+		"\36\3\2\2\2\'\7\3\2\2\2(/\7\3\2\2)/\7\4\2\2*/\7\5\2\2+/\7\6\2\2,/\7\7"+
+		"\2\2-/\7\b\2\2.(\3\2\2\2.)\3\2\2\2.*\3\2\2\2.+\3\2\2\2.,\3\2\2\2.-\3\2"+
+		"\2\2/\t\3\2\2\2\b\r\23\27\"&.";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

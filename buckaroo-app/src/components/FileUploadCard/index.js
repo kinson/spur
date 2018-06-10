@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FileUpload from '@material-ui/icons/FileUpload';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   card: {
@@ -36,12 +37,13 @@ class FileUploadCard extends Component {
 
     this.state = {
       fileName: '',
-      uploadInput: ''
+      uploadInput: '',
+      secret: ''
     }
   }
 
   uploadFile(ev) {
-    this.props.handleUpload(ev, this.state.uploadInput);
+    this.props.handleUpload(ev, this.state.uploadInput, this.state.fileName, this.state.secret);
   }
 
   onFileInputChange(event) {
@@ -52,6 +54,13 @@ class FileUploadCard extends Component {
       })
     }
   }
+
+  onSecretChange(event) {
+    this.setState({
+      secret: event.target.value
+    });
+  }
+
   
   render() {
     const { classes } = this.props;
@@ -79,7 +88,16 @@ class FileUploadCard extends Component {
               <Button component="span" variant="contained" className={classes.button} color="secondary">
                 Select A File
               </Button>
-            </label>
+            </label><br />
+
+            <TextField
+              id="name"
+              label="Secret"
+              className={classes.textField}
+              value={this.state.secret}
+              onChange={this.onSecretChange.bind(this)}
+              margin="normal"
+            />
   
           </CardContent>
           <CardActions style={{ justifyContent: "flex-end" }}>

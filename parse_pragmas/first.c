@@ -8,9 +8,9 @@
 #endif
 
 #define BILLION 1E9
-
 // cprag NAME samsfirstjob
-// cprag TIME 2
+// cprag TIME 120
+// cprag EMAIL shunter@smu.edu
 
 void mxv(int m, int n, double * restrict a, double * restrict b, double * restrict c);
 
@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     int i, j, m, n;
 
     printf("Please give m and n: ");
-    m = atoi(argv[1]);
-    n = atoi(argv[2]);
+    m = 10000
+    n = 50000;
 
     if ( (a=(double *)malloc(m*sizeof(double))) == NULL )
       perror("memory alocation for a");

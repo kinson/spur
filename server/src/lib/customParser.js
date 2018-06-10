@@ -31,6 +31,7 @@ KeyPrinter.prototype.enterNamePrag = function(ctx) {
   if (this.customPragValue) {
     this.pragmas['JOB_NAME'] = '-J ' + this.customPragValue;
     this.pragmas['JOB_OUTPUT'] = '-o ' + this.customPragValue + '_%j.out';
+    this.pragmas['JOB_ERR'] = '-e ' + this.customPragValue + '_err_%j.out';
   }
 };
 
@@ -43,6 +44,13 @@ KeyPrinter.prototype.enterMemPrag = function(ctx) {
 KeyPrinter.prototype.enterTimePrag = function(ctx) {
   if (this.customPragValue) {
     this.pragmas['TIME'] = '-t ' + this.customPragValue;
+  }
+};
+
+KeyPrinter.prototype.enterEmailPrag = function(ctx) {
+  if (this.customPragValue) {
+    this.pragmas['EMAIL'] = '--mail-user ' + this.customPragValue;
+    this.pragmas['EMAIL_TYPE'] = '--mail-type=all';
   }
 };
 
