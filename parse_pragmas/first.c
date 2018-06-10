@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     int i, j, m, n;
 
     printf("Please give m and n: ");
-    m = 10000
+    m = 10000;
     n = 50000;
 
     if ( (a=(double *)malloc(m*sizeof(double))) == NULL )
