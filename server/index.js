@@ -19,14 +19,17 @@ server.options = {
 
 const start = async () => {
 
-    await server.register([
-      require('inert')
-    ]);
+  await server.register([
+    require('inert'),
+    require('nes')
+  ]);
 
-    await server.register(routes);
+  server.subscription('/job/{id}');
 
-    await server.start();
-    console.log(`Server running at: ${server.info.uri}`);
+  await server.register(routes);
+
+  await server.start();
+  console.log(`Server running at: ${server.info.uri}`);
 };
 
 start();

@@ -13,6 +13,8 @@ import red from '@material-ui/core/colors/red';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
+const Nes = require('nes');
+const client = new Nes.Client('ws://localhost:3000');
 
 const theme = createMuiTheme({
   palette: {
@@ -56,6 +58,21 @@ class App extends Component {
     };
 
     this.handleUploadImage = this.handleUploadImage.bind(this);
+  }
+
+  handleUpdate(update, flags) {
+    console.log('in websocket');
+    console.log(update);
+  }
+
+  clientConnected() {
+    console.log('client has connected');
+  }
+
+  async componentDidMount() {
+    client.onConnect = this.clientConnected;
+    await client.connect();
+    client.onUpdate = this.handleUpdate;
   }
 
   handleUploadImage(ev, uploadInput, fileName, secret) {
@@ -153,6 +170,10 @@ class App extends Component {
           }
         }
         this.setState(newState);
+
+        if (response.status === 200) {
+          client.subscribe(`/job/${body.jobId}`, this.handleUpdate);
+        }
       });
     });
   }

@@ -66,13 +66,14 @@ exports.plugin = {
         }
         
         // submit sbatch
+        let jobId = '';
         try {
-          hpcHelper.submitSbatch();
+          jobId = hpcHelper.submitSbatch();
         } catch (e) {
           return Boom.expectationFailed('Failed to submit batch file to slurm');
         }
         
-        return h.response({ message: 'ok' });
+        return h.response({ message: 'ok', jobId });
       }
     });
   }

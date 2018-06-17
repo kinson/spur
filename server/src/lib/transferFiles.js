@@ -35,7 +35,10 @@ function copyToHpc(filePath) {
       var stdout = execSync(execString, {
         encoding: 'utf-8'
       });
-      return stdout;
+      
+      const jobId = stdout.replace('\n', '').split(/\s+/).pop();
+      console.log(jobId);
+      return jobId;
     }
   };
   
