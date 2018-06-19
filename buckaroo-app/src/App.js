@@ -5,6 +5,7 @@ import BuckarooAppBar from './components/AppBar';
 import FileUploadCard from './components/FileUploadCard';
 import BatchFileDisplayCard from './components/BatchFileDisplayCard';
 import PartitionsCard from './components/PartitionsCard';
+import ProgressTracker from './components/ProgressTracker';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -191,6 +192,10 @@ class App extends Component {
             direction="row"
             style={{"marginTop": "10px"}}
           >
+            <Grid item xs={12} md={10} lg={8}>
+              <ProgressTracker/>
+            </Grid>
+
             <Grid item xs={12} md={10} lg={8}>
               <FileUploadCard handleUpload={this.handleUploadImage.bind(this)}/>
             </Grid>
