@@ -71,9 +71,17 @@ const styles = theme => ({
 });
 
 class ProgressTracker extends Component {
+
+  fetchResults() {
+    this.props.fetchRunResults();
+  }
   
   render() {
     const { classes } = this.props;
+
+    const rootStyles = {
+      visibility: this.props.isSubmitted ? 'visible' : 'hidden',
+    }
 
     const submittedAnimation = {
       animation: `${fadeIn} 0.5s linear`,
@@ -110,7 +118,7 @@ class ProgressTracker extends Component {
               </div>
 
               <div className={classes.stepWrapper} style={processingAnimation}>
-                <Rotate spin={true}>
+                <Rotate spin={this.props.isProcessing}>
                   <div className={classes.progressStepOne} >
                     <CachedIcon className={classes.icon} />
                   </div>
@@ -139,6 +147,14 @@ class ProgressTracker extends Component {
             </div>
   
           </CardContent>
+          <CardActions style={{ justifyContent: "flex-end" }}>
+            <Button
+              size="small"
+              className={classes.submit}
+              disabled={this.props.isComplete !== true}
+              onClick={this.fetchResults.bind(this)}
+            >Fetch Results</Button>
+          </CardActions>
         </Card>
         
       </div>

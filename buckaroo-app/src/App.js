@@ -4,6 +4,7 @@ import './App.css';
 import BuckarooAppBar from './components/AppBar';
 import FileUploadCard from './components/FileUploadCard';
 import BatchFileDisplayCard from './components/BatchFileDisplayCard';
+import ResultsCard from './components/ResultsCard';
 import PartitionsCard from './components/PartitionsCard';
 import ProgressTracker from './components/ProgressTracker';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
@@ -57,9 +58,11 @@ class App extends Component {
       sbatchPath: '',
       tooLongToRun: null,
       // progress specific code
+      progressSubmitted: false,
       progressComplete: false,
       progressBegan: false,
-      progressProcessing: false
+      progressProcessing: false,
+      resultsText: ''
     };
 
     this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -104,7 +107,7 @@ class App extends Component {
     data.append('fileName', fileName);
     data.append('secret', secret);
 
-    fetch(`${process.env.HOSTSITE}/upload`, {
+    fetch(`http://localhost:3000/upload`, {
       method: 'POST',
       body: data,
     }).then((response) => {
@@ -195,6 +198,17 @@ class App extends Component {
     });
   }
 
+  fetchRunResults() {
+    fetch(`http://localhost:3000/api/fetch-output?filePath=${this.state.sbatchPath}`)
+      .then((response) => {
+        response.text().then(output => {
+          console.log('here');
+          console.log(output);
+          this.setState({ resultsText: output })
+        })
+      })
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -208,13 +222,6 @@ class App extends Component {
             direction="row"
             style={{"marginTop": "10px"}}
           >
-            <Grid item xs={12} md={10} lg={8}>
-              <ProgressTracker 
-                isComplete={this.state.progressComplete}
-                beganProcessing={this.state.progressBegan}
-                isProcessing={this.state.progressProcessing}
-                />
-            </Grid>
 
             <Grid item xs={12} md={10} lg={8}>
               <FileUploadCard handleUpload={this.handleUploadImage.bind(this)}/>
@@ -234,7 +241,24 @@ class App extends Component {
                 runTestJob={this.runTestJob.bind(this)}
               />
             </Grid>
+
+            <Grid item xs={12} md={10} lg={8}>
+              <ProgressTracker
+                isSubmitted={this.state.progressSubmitted} 
+                isComplete={this.state.progressComplete}
+                beganProcessing={this.state.progressBegan}
+                isProcessing={this.state.progressProcessing}
+                fetchRunResults={this.fetchRunResults.bind(this)}
+                />
+            </Grid>
+            
+            <Grid item xs={12} md={10} lg={8}>
+                <ResultsCard 
+                  resultsText={this.state.resultsText} 
+                />
+            </Grid>
           </Grid>
+
 
         <Snackbar
           anchorOrigin={{
