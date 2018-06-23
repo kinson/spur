@@ -99,7 +99,7 @@ class ProgressTracker extends Component {
     }
   
     return (
-      <div>
+      <div style={rootStyles}>
         <Card className={classes.card}>
           <CardContent>
 
