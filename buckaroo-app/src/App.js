@@ -186,7 +186,8 @@ class App extends Component {
           newState = {
             isError: true,
             snackBarOpenError: true,
-            errorMessage: body.message
+            errorMessage: body.message,
+            progressSubmitted: true
           }
         }
         this.setState(newState);
@@ -251,7 +252,7 @@ class App extends Component {
                 fetchRunResults={this.fetchRunResults.bind(this)}
                 />
             </Grid>
-            
+
             <Grid item xs={12} md={10} lg={8}>
                 <ResultsCard 
                   resultsText={this.state.resultsText} 
