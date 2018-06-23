@@ -120,7 +120,7 @@ to {
 
 const Rotate = styled.div`
 display: inline-block;
-animation: ${rotate360} 2s linear infinite;
+animation: ${props => props.spin ? rotate360: 'none'} 2s linear infinite;
 padding: 2rem 1rem;
 font-size: 1.2rem;
 `;
@@ -197,7 +197,7 @@ class ProgressTracker extends Component {
               </div>
 
               <div className={classes.stepWrapper}>
-                <Rotate>
+                <Rotate spin={true}>
                   <div className={classes.progressStepOne}>
                     <CachedIcon className={classes.icon} />
                   </div>
