@@ -45,7 +45,7 @@ function copyToHpc(filePath) {
 
       let execString = 'ssh shunter@m2.smu.edu';
       execString += ' \'cd buckaroo/' + relativeHPCPath;
-      execString += ' && cat *.out\'';
+      execString += ' && cat *_*.out\'';
 
       var stdout = execSync(execString, {
         encoding: 'utf-8'
