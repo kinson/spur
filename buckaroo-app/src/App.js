@@ -189,7 +189,7 @@ class App extends Component {
         this.setState(newState);
 
         if (response.status === 200) {
-          client.subscribe(`/job/${body.jobId}`, this.handleUpdate);
+          client.subscribe(`/job/${body.jobId}`, this.handleUpdate.bind(this));
         }
       });
     });

@@ -124,7 +124,7 @@ class ProgressTracker extends Component {
                 </Typography>
               </div>
 
-              <div className={classes.stepWrapper}>
+              <div className={classes.stepWrapper} style={doneAnimation}>
                 <div className={classes.progressStepOne}>
                   <DoneIcon className={classes.icon}/>
                 </div>
