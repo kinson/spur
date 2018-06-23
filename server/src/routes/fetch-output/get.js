@@ -1,6 +1,5 @@
 'use strict';
-const glob = require('glob');
-const fs = require('fs');
+const hpc = require('../../lib/transferFiles');
 
 exports.plugin = {
   name: 'fetch-output',
@@ -16,13 +15,16 @@ exports.plugin = {
       handler: (request, h) => {
         console.log(request.query);
 
-        const outputFile = glob.sync(`${request.query.filePath}/*.out`);
-        if (outputFile.length === 0) {
+        const hpcHelper = hpc(request.query.filePath);
+
+        let out = '';
+        try {
+          out = hpcHelper.fetchOutput();
+        } catch (error) {
           return h.response('Could not find file to retrieve').code(412);
         }
-        const fname = outputFile[0];
 
-        const out = fs.readFileSync(fname, { encoding: 'UTF-8' });
+        console.log(out);
 
         return h.response(out);
       }

@@ -39,6 +39,19 @@ function copyToHpc(filePath) {
       const jobId = stdout.replace('\n', '').split(/\s+/).pop();
       console.log(jobId);
       return jobId;
+    },
+    fetchOutput: () => {
+      const relativeHPCPath = filePath.split('/').pop();
+
+      let execString = 'ssh shunter@m2.smu.edu';
+      execString += ' \'cd buckaroo/' + relativeHPCPath;
+      execString += ' && cat *.out\'';
+
+      var stdout = execSync(execString, {
+        encoding: 'utf-8'
+      });
+
+      return stdout;
     }
   };
   

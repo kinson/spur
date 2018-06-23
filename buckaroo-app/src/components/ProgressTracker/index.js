@@ -67,6 +67,9 @@ const styles = theme => ({
   },
   stepTitle: {
     color: '#fff'
+  },
+  submit: {
+    color: theme.palette.secondary.dark
   }
 });
 
