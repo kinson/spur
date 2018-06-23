@@ -181,13 +181,17 @@ class App extends Component {
       }
     }).then((response) => {
       response.json().then(body => {
-        let newState = { isError: false, snackBarOpenSuccess: true, successMessage: 'Job submitted to ManeFrame II' };
+        let newState = { 
+          isError: false, 
+          snackBarOpenSuccess: true, 
+          successMessage: 'Job submitted to ManeFrame II',
+          progressSubmitted: true
+        };
         if (response.status !== 200) {
           newState = {
             isError: true,
             snackBarOpenError: true,
-            errorMessage: body.message,
-            progressSubmitted: true
+            errorMessage: body.message
           }
         }
         this.setState(newState);
