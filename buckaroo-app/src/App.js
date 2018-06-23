@@ -68,13 +68,13 @@ class App extends Component {
   handleUpdate(update, flags) {
     console.log('in websocket');
     console.log(update);
-    if (update && update.jobStatus === 'BEGAN') {
+    if (update && update.status === 'BEGAN') {
       this.setState({ 
         progressBegan: true,
         progressProcessing: true
       });
 
-    } else if (update && update.jobStatus === 'ENDED') {
+    } else if (update && update.status === 'ENDED') {
       this.setState({ 
         progressComplete: true,
         progressProcessing: false
@@ -89,7 +89,7 @@ class App extends Component {
   async componentDidMount() {
     client.onConnect = this.clientConnected;
     await client.connect();
-    client.onUpdate = this.handleUpdate;
+    client.onUpdate = this.handleUpdate.bind(this);
   }
 
   handleUploadImage(ev, uploadInput, fileName, secret) {
