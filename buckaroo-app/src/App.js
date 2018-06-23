@@ -56,6 +56,10 @@ class App extends Component {
       snackBarOpenError: false,
       sbatchPath: '',
       tooLongToRun: null,
+      // progress specific code
+      progressComplete: false,
+      progressBegan: false,
+      progressProcessing: false
     };
 
     this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -64,6 +68,18 @@ class App extends Component {
   handleUpdate(update, flags) {
     console.log('in websocket');
     console.log(update);
+    if (update && update.jobStatus === 'BEGAN') {
+      this.setState({ 
+        progressBegan: true,
+        progressProcessing: true
+      });
+
+    } else if (update && update.jobStatus === 'ENDED') {
+      this.setState({ 
+        progressComplete: true,
+        progressProcessing: false
+      })
+    }
   }
 
   clientConnected() {
@@ -193,7 +209,11 @@ class App extends Component {
             style={{"marginTop": "10px"}}
           >
             <Grid item xs={12} md={10} lg={8}>
-              <ProgressTracker/>
+              <ProgressTracker 
+                isComplete={this.state.progressComplete}
+                beganProcessing={this.state.progressBegan}
+                isProcessing={this.state.progressProcessing}
+                />
             </Grid>
 
             <Grid item xs={12} md={10} lg={8}>
