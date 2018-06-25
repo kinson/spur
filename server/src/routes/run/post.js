@@ -33,7 +33,10 @@ exports.plugin = {
         },
       },
       handler: (request, h) => {
-
+        
+	if (process.env.NODE_ENV === 'development') {
+	  return h.response({ message: 'ok', jobId: '1'});
+	}
 
         // path
         const filePath = request.payload.filePath;

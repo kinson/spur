@@ -142,7 +142,7 @@ class App extends Component {
   };
 
   fetchAvailablePartitions() {
-    fetch(`${process.env.HOSTSITE}/api/partitions`, {
+    fetch(`http://localhost:3000/api/partitions`, {
       method: 'POST'
     }).then((response) => {
       response.json().then(body => {
@@ -173,7 +173,7 @@ class App extends Component {
       fileName: this.state.uploadFileName
     };
 
-    fetch(`${process.env.HOSTSITE}/api/run`, {
+    fetch('http://localhost:3000/api/run', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -207,11 +207,22 @@ class App extends Component {
     fetch(`http://localhost:3000/api/fetch-output?filePath=${this.state.sbatchPath}`)
       .then((response) => {
         response.text().then(output => {
-          console.log('here');
-          console.log(output);
-          this.setState({ resultsText: output })
-        })
-      })
+	  let newState = {};
+	  if (response.status !== 200) {
+	    newState = {
+	      isError: true,
+	      snackBarOpenError: true,
+	      errorMessage: output.message
+	    };
+	  } else {
+	    newState = {
+	      isError: false,
+	      resultsText: output
+	    };
+	  }
+	  this.setState(newState);
+	});
+      });
   }
 
   render() {

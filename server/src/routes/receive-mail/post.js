@@ -12,16 +12,9 @@ exports.plugin = {
         },
       },
       handler: (request, h) => {
-        console.log('triggered');
-
-        // publish update to subscription for job id
-        // console.log(request.payload);
-
         const subject = request.payload.subject;
-        console.log(subject);
 
         const jobId = subject.split(/\s+/)[1].split('=').pop();
-        console.log(jobId);
 
         let jobStatus = 'unknown';
 
@@ -30,6 +23,10 @@ exports.plugin = {
         } else if (subject.indexOf('Ended') !== -1) {
           jobStatus = 'ENDED';
         }
+
+	if (jobStatus === 'ENDED' && subject.indexOf('ExitCode 0') === -1) {
+	  return h.response('Program failed to execute').code(412);
+	}
 
         server.publish(`/job/${jobId}`, { id: jobId, status: jobStatus});
 

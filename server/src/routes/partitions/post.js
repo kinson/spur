@@ -15,19 +15,22 @@ exports.plugin = {
         },
       },
       handler: (request, h) => {
-
-        const openPartitions = getOpenPartitions();
-        // const openPartitions = { 
-        //   'standard-mem-s': '35',
-        //   'standard-mem-l': '1',
-        //   htc: '26',
-        //   development: '3',
-        //   'medium-mem-1-s': '3',
-        //   'medium-mem-1-m': '1',
-        //   'medium-mem-2': '1',
-        //   'high-mem-1': '4',
-        //   mic: '38' 
-        // };
+	let openPartitions = {};
+	if (process.env.NODE_ENV === 'development') {
+	   openPartitions = { 
+	     'standard-mem-s': '35',
+	     'standard-mem-l': '1',
+	     htc: '26',
+	     development: '3',
+	     'medium-mem-1-s': '3',
+	     'medium-mem-1-m': '1',
+	     'medium-mem-2': '1',
+	     'high-mem-1': '4',
+	     mic: '38' 
+	   };
+	} else {
+	  openPartitions = getOpenPartitions();
+	}
         // const openPartitions = {};
 
         return h.response(openPartitions);

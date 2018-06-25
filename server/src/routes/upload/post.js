@@ -7,7 +7,12 @@ const getPragmas = require('../../lib/customParser');
 const generateSbatch = require('../../lib/generateSbatch');
 const Boom = require('boom');
 
-const SECRET_FOR_AUTH = 'SMU2018_Hunter%C0YLE';
+
+if (process.env.NODE_ENV !== 'development') {
+  const SECRET_FOR_AUTH = 'SMU2018_Hunter%C0YLE';
+}
+
+const SECRET_FOR_AUTH = '';
 
 exports.plugin = {
   name: 'upload-file',

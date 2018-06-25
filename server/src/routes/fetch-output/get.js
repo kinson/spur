@@ -13,7 +13,6 @@ exports.plugin = {
         },
       },
       handler: (request, h) => {
-        console.log(request.query);
 
         const hpcHelper = hpc(request.query.filePath);
 
@@ -23,8 +22,6 @@ exports.plugin = {
         } catch (error) {
           return h.response('Could not find file to retrieve').code(412);
         }
-
-        console.log(out);
 
         return h.response(out);
       }
