@@ -36,7 +36,8 @@ KeyPrinter.prototype.enterNamePrag = function(ctx) {
 
 KeyPrinter.prototype.enterMemPrag = function(ctx) {
   if (this.customPragValue) {
-    this.pragmas['JOB_MEM'] = '--mem= ' + this.customPragValue;
+    this.pragmas['JOB_MEM'] = '--mem=' + this.customPragValue;
+    this.pragmas['X'] = '--exclusive';
   }
 };
 

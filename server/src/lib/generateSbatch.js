@@ -26,7 +26,9 @@ function generateSbatch(pragmas, fileName, forTest) {
     outputString += 'chmod +x ' + noOpenMPExec + ' \n\n';
   }
   if (forTest) {
+    outputString += 'echo time with openMP\n';
     outputString += `time ./${openMPExec}\n`;
+    outputString += 'echo time without openMP\n';
     outputString += `time ./${noOpenMPExec}\n`;
   } else {
     outputString += `./${openMPExec}\n`;

@@ -11,6 +11,7 @@
 // cprag NAME samsfirstjob
 // cprag TIME 120
 // cprag EMAIL me@parse.samwhunter.com
+// cprag MEM 64G
 
 void mxv(int m, int n, double * restrict a, double * restrict b, double * restrict c);
 
@@ -20,7 +21,7 @@ int main(int argc, char *argv[])
     int i, j, m, n;
 
     printf("Please give m and n: ");
-    m = 20000;
+    m = 40000;
     n = 50000;
 
     if ( (a=(double *)malloc(m*sizeof(double))) == NULL )
