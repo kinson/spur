@@ -10,7 +10,7 @@
 #define BILLION 1E9
 // cprag NAME samsfirstjob
 // cprag TIME 120
-// cprag EMAIL me@parse.samwhunter.com
+// cprag EMAIL shunter@smu.edu
 // cprag MEM 64G
 
 void mxv(int m, int n, double * restrict a, double * restrict b, double * restrict c);

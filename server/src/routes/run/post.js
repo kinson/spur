@@ -34,10 +34,6 @@ exports.plugin = {
       },
       handler: (request, h) => {
         
-	if (process.env.NODE_ENV === 'development') {
-	  return h.response({ message: 'ok', jobId: '1'});
-	}
-
         // path
         const filePath = request.payload.filePath;
 
@@ -50,6 +46,10 @@ exports.plugin = {
 
         // create sbatch for test
         creatSbatchForTestRun(filePath, partition, fileName);
+
+	if (process.env.NODE_ENV === 'development') {
+	  return h.response({ message: 'ok', jobId: '1'});
+	}
 
         const hpcHelper = hpc(filePath);
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import BuckarooAppBar from './components/AppBar';
+import WelcomeDialog from './components/WelcomeDialog';
 import FileUploadCard from './components/FileUploadCard';
 import BatchFileDisplayCard from './components/BatchFileDisplayCard';
 import ResultsCard from './components/ResultsCard';
@@ -238,6 +239,10 @@ class App extends Component {
             direction="row"
             style={{"marginTop": "10px"}}
           >
+
+            <Grid item xs={12} md={10} lg={8}>
+              <WelcomeDialog />
+            </Grid>
 
             <Grid item xs={12} md={10} lg={8}>
               <FileUploadCard handleUpload={this.handleUploadImage.bind(this)}/>

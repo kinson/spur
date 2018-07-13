@@ -8,14 +8,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FileUpload from '@material-ui/icons/FileUpload';
 import TextField from '@material-ui/core/TextField';
+import HelpIcon from '@material-ui/icons/Help';
+import HelpDialog from '../HelpDialog';
 
 const styles = theme => ({
   card: {
     minWidth: 450,
   },
   title: {
-    marginBottom: 16,
-    fontSize: 14,
+    marginBottom: 20,
   },
   pos: {
     marginBottom: 12,
@@ -38,7 +39,8 @@ class FileUploadCard extends Component {
     this.state = {
       fileName: '',
       uploadInput: '',
-      secret: ''
+      secret: '',
+      open: false
     }
   }
 
@@ -61,6 +63,16 @@ class FileUploadCard extends Component {
     });
   }
 
+  openHelpDialog() {
+    this.setState({
+      open: true
+    });
+  }
+
+  handleClose = value => {
+    this.setState({ open: false });
+  };
+
   
   render() {
     const { classes } = this.props;
@@ -73,8 +85,17 @@ class FileUploadCard extends Component {
             <Typography
               variant="headline"
               color="inherit"
+              className={classes.title}
               component="h2">
               Upload Your Source File
+            </Typography>
+
+            <Typography
+              color="textSecondary"
+              className={classes.pos}
+              component="p"
+            >
+              Upload a C or C++ file that has at least one OpenMP Pragma
             </Typography>
   
             <input
@@ -102,6 +123,12 @@ class FileUploadCard extends Component {
           </CardContent>
           <CardActions style={{ justifyContent: "flex-end" }}>
             <Button
+              style={{ marginRight: 'auto' }}
+              size="small"
+              onClick={this.openHelpDialog.bind(this)}
+              className={classes.submit}
+            ><HelpIcon /></Button>
+            <Button
               size="small"
               className={classes.submit}
               onClick={this.uploadFile.bind(this)}
@@ -109,6 +136,13 @@ class FileUploadCard extends Component {
             >Generate Batch File</Button>
           </CardActions>
         </Card>
+      <HelpDialog
+	open={this.state.open}
+        onClose={this.handleClose}
+        cardtitle="File Upload Card"
+      >
+        This is the one for me
+      </HelpDialog>
       </div>
     )
   }
