@@ -6,10 +6,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import FileUpload from '@material-ui/icons/FileUpload';
 import TextField from '@material-ui/core/TextField';
 import HelpIcon from '@material-ui/icons/Help';
 import HelpDialog from '../HelpDialog';
+
+const helpSrc = 'To use buckaroo first upload a c or c++ file that contains at least one C++ file.';
 
 const styles = theme => ({
   card: {
@@ -139,9 +140,9 @@ class FileUploadCard extends Component {
       <HelpDialog
 	open={this.state.open}
         onClose={this.handleClose}
-        cardtitle="File Upload Card"
+        cardtitle="Help"
       >
-        This is the one for me
+        {helpSrc}
       </HelpDialog>
       </div>
     )

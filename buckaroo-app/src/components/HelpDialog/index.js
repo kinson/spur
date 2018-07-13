@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactMarkdown from 'react-markdown';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -9,16 +10,13 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-  title: {
-    margin: '10px'
+  dialogBody: {
+    paddingLeft: '20px',
+    paddingRight: '20px'
   }
 });
 
 class HelpDialog extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleClose = () => {
     this.props.onClose();
   }
@@ -31,12 +29,10 @@ class HelpDialog extends Component {
     return (
       <Dialog onClose={this.handleClose.bind(this)} aria-labelledby="simple-dialog-title" {...other}>
 	<DialogTitle id="simple-dialog-title">{cardtitle}</DialogTitle>
-	  <div>
-           {children}
-	  </div>
+	  <ReactMarkdown className={classes.dialogBody} source={children} />
 	<DialogActions>
 	  <Button onClick={this.handleClose} color="primary" autoFocus>
-	    Agree
+	    Close
 	  </Button>
 	</DialogActions>
       </Dialog>
