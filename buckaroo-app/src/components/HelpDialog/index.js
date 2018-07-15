@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
@@ -11,8 +10,11 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   dialogBody: {
-    paddingLeft: '20px',
-    paddingRight: '20px'
+    paddingLeft: '40px',
+    paddingRight: '40px'
+  },
+  dialogHeader: {
+    paddingLeft: '40px'
   }
 });
 
@@ -28,8 +30,10 @@ class HelpDialog extends Component {
   
     return (
       <Dialog onClose={this.handleClose.bind(this)} aria-labelledby="simple-dialog-title" {...other}>
-	<DialogTitle id="simple-dialog-title">{cardtitle}</DialogTitle>
-	  <ReactMarkdown className={classes.dialogBody} source={children} />
+	<DialogTitle className={classes.dialogHeader} id="simple-dialog-title">{cardtitle}</DialogTitle>
+          <div className={classes.dialogBody}>
+            {children}
+          </div>
 	<DialogActions>
 	  <Button onClick={this.handleClose} color="primary" autoFocus>
 	    Close

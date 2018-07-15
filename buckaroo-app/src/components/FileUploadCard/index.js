@@ -10,7 +10,15 @@ import TextField from '@material-ui/core/TextField';
 import HelpIcon from '@material-ui/icons/Help';
 import HelpDialog from '../HelpDialog';
 
-const helpSrc = 'To use buckaroo first upload a c or c++ file that contains at least one C++ file.';
+const helpSrc = () => {
+  return (<Typography variant="body1">
+    When you upload your source file a batch file is generated that can be used to submit your code as a job to the high performance computer.<br /><br />
+    
+    A batch file is a bash script that contains special comments that describe how the super computer should run your program. For example it specifies what the name of your job is, how much memory it needs and what type of node it should run on. Don’t worry if you upload your file, or the sample file a submission file will be generated for you. <br /><br />
+    
+    The Center for Scientific Computation has more information about batch files <a href='http://faculty.smu.edu/csc/documentation/slurm.html#batch-job-submission-file'>here</a>.
+  </Typography>);
+}
 
 const styles = theme => ({
   card: {
@@ -140,9 +148,9 @@ class FileUploadCard extends Component {
       <HelpDialog
 	open={this.state.open}
         onClose={this.handleClose}
-        cardtitle="Help"
+        cardtitle="Generating A Batch File"
       >
-        {helpSrc}
+        {helpSrc()}
       </HelpDialog>
       </div>
     )
