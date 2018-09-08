@@ -43,7 +43,7 @@ function copyToHpc(filePath) {
     fetchOutput: () => {
       const relativeHPCPath = filePath.split('/').pop();
 
-      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd buckaroo' ${relativeHPCPath} && cat *_*.out'`;
+      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd buckaroo/${relativeHPCPath} && cat *_*.out'`;
 
       var stdout = execSync(execString, {
         encoding: 'utf-8'
