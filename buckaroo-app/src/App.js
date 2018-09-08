@@ -16,8 +16,9 @@ import red from '@material-ui/core/colors/red';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-const Nes = require('nes');
-const client = new Nes.Client('ws://localhost:3000');
+import Nes from 'nes';
+const config = require('./config');
+const client = new Nes.Client(config.wsHost);
 
 const theme = createMuiTheme({
   palette: {
@@ -108,7 +109,7 @@ class App extends Component {
     data.append('fileName', fileName);
     data.append('secret', secret);
 
-    fetch(`http://localhost:3000/upload`, {
+    fetch(`${config.host}/upload`, {
       method: 'POST',
       body: data,
     }).then((response) => {
@@ -143,7 +144,7 @@ class App extends Component {
   };
 
   fetchAvailablePartitions() {
-    fetch(`http://localhost:3000/api/partitions`, {
+    fetch(`${config.host}/api/partitions`, {
       method: 'POST'
     }).then((response) => {
       response.json().then(body => {
@@ -174,7 +175,7 @@ class App extends Component {
       fileName: this.state.uploadFileName
     };
 
-    fetch('http://localhost:3000/api/run', {
+    fetch(`${config.host}/api/run`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -205,10 +206,10 @@ class App extends Component {
   }
 
   fetchRunResults() {
-    fetch(`http://localhost:3000/api/fetch-output?filePath=${this.state.sbatchPath}`)
+    fetch(`${config.host}/api/fetch-output?filePath=${this.state.sbatchPath}`)
       .then((response) => {
         response.text().then(output => {
-	  let newState = {};
+          let newState = {};
 	  if (response.status !== 200) {
 	    newState = {
 	      isError: true,
