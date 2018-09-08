@@ -14,7 +14,7 @@ const helpSrc = () => {
   return (<Typography variant="body1">
     When you upload your source file a batch file is generated that can be used to submit your code as a job to the high performance computer.<br /><br />
     
-    A batch file is a bash script that contains special comments that describe how the super computer should run your program. For example it specifies what the name of your job is, how much memory it needs and what type of node it should run on. Don’t worry if you upload your file, or the sample file a submission file will be generated for you. <br /><br />
+    A batch file is a bash script that contains special comments that describe how the super computer should run your program. For example it specifies what the name of your job is, how much memory it needs and what type of node it should run on. Don’t worry if you upload your file, or the <a href='https://gist.github.com/kinson/1d31567d27af3be4bc70898a351baaca'>sample file</a> a submission file will be generated for you. <br /><br />
     
     The Center for Scientific Computation has more information about batch files <a href='http://faculty.smu.edu/csc/documentation/slurm.html#batch-job-submission-file'>here</a>.
   </Typography>);

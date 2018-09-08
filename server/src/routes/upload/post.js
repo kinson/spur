@@ -5,14 +5,8 @@ const fs = require('fs');
 const os = require('os');
 const getPragmas = require('../../lib/customParser');
 const generateSbatch = require('../../lib/generateSbatch');
+const config = require('../../../config');
 const Boom = require('boom');
-
-
-if (process.env.NODE_ENV !== 'development') {
-  const SECRET_FOR_AUTH = 'SMU2018_Hunter%C0YLE';
-}
-
-const SECRET_FOR_AUTH = '';
 
 exports.plugin = {
   name: 'upload-file',
@@ -27,7 +21,7 @@ exports.plugin = {
       },
       handler: (request, h) => {
 
-        if (request.payload.secret !== SECRET_FOR_AUTH) {
+        if (request.payload.secret !== config.authSecret) {
           return Boom.forbidden('Not authorized');
         }
       

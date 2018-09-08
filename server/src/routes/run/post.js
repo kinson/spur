@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 const hpc = require('../../lib/transferFiles');
+const config = require('../../../config');
 const Boom = require('boom');
 
 const getPragmas = require('../../lib/customParser');
@@ -14,7 +15,8 @@ function creatSbatchForTestRun(fpath, partition, fileName) {
 
   const pragmas = {
     ...getPragmas(source),
-    'PARTITION': '-p ' + partition
+    'PARTITION': '-p ' + partition,
+    'EMAIL': config.webhookEmail 
   };
   const sbatch = generateSbatch(pragmas, fileName, true);
 
