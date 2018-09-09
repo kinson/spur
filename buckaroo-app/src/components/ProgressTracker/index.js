@@ -10,6 +10,14 @@ import SendIcon from '@material-ui/icons/Send';
 import CachedIcon from '@material-ui/icons/Cached';
 import DoneIcon from '@material-ui/icons/Done';
 import styled, { keyframes } from 'styled-components'
+import HelpIcon from '@material-ui/icons/Help';
+import HelpDialog from '../HelpDialog';
+
+const helpSrc = () => {
+  return (<Typography variant="body1">
+    When the job begans processing, the middle icon will rotate until it receives notification that the job has completed. Once it is completed you can view the output.
+  </Typography>);
+}
 
 
 const fadeIn = keyframes`
@@ -74,6 +82,24 @@ const styles = theme => ({
 });
 
 class ProgressTracker extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false
+    };
+  }
+
+  openHelpDialog() {
+    this.setState({
+      open: true
+    });
+  }
+
+  handleClose = value => {
+    this.setState({ open: false });
+  };
 
   fetchResults() {
     this.props.fetchRunResults();
@@ -152,6 +178,12 @@ class ProgressTracker extends Component {
           </CardContent>
           <CardActions style={{ justifyContent: "flex-end" }}>
             <Button
+              style={{ marginRight: 'auto' }}
+              size="small"
+              onClick={this.openHelpDialog.bind(this)}
+              className={classes.submit}
+            ><HelpIcon /></Button>
+            <Button
               size="small"
               className={classes.submit}
               disabled={this.props.isComplete !== true}
@@ -159,7 +191,13 @@ class ProgressTracker extends Component {
             >Fetch Results</Button>
           </CardActions>
         </Card>
-        
+      <HelpDialog
+	open={this.state.open}
+        onClose={this.handleClose}
+        cardtitle="Job Status"
+      >
+        {helpSrc()}
+      </HelpDialog>
       </div>
     )
   }

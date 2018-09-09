@@ -8,6 +8,16 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { railscasts } from 'react-syntax-highlighter/styles/hljs';
+import HelpIcon from '@material-ui/icons/Help';
+import HelpDialog from '../HelpDialog';
+
+const helpSrc = () => {
+  return (<Typography variant="body1">
+   The sample batch file displayed on this car contains the necessary configuration to submit a job to the SLURM job scheduler on the supercomputer. <br /><br />
+
+    The first part of this file contains SLURM flags to determine how to run the job, these are prefixed with #SBATCH. The second part of the file contains Bash commands to load the correct compiler and then compile your program. The last step is beginning the execution of the program.
+  </Typography>);
+}
 
 const styles = theme => ({
   fileName: {
@@ -34,6 +44,24 @@ const styles = theme => ({
 });
 
 class BatchFileDisplayCard extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false
+    };
+  }
+
+  openHelpDialog() {
+    this.setState({
+      open: true
+    });
+  }
+
+  handleClose = value => {
+    this.setState({ open: false });
+  };
   
   render() {
     const { classes } = this.props;
@@ -64,13 +92,25 @@ class BatchFileDisplayCard extends Component {
           </CardContent>
           <CardActions style={{ justifyContent: "flex-end" }}>
             <Button
+              style={{ marginRight: 'auto' }}
+              size="small"
+              onClick={this.openHelpDialog.bind(this)}
+              className={classes.submit}
+            ><HelpIcon /></Button>
+            <Button
               size="small"
               className={classes.submit}
               onClick={this.props.fetchAvailablePartitions.bind(this)}
             >View Available Partitions</Button>
           </CardActions>
         </Card>
-        
+      <HelpDialog
+	open={this.state.open}
+        onClose={this.handleClose}
+        cardtitle="Sample Batch File"
+      >
+        {helpSrc()}
+      </HelpDialog>
       </div>
     )
   }

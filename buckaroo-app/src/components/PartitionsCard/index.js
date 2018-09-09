@@ -6,17 +6,21 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-
 import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
-
 import Avatar from '@material-ui/core/Avatar';
+import HelpIcon from '@material-ui/icons/Help';
+import HelpDialog from '../HelpDialog';
+
+const helpSrc = () => {
+  return (<Typography variant="body1">
+    The partitions on this card represent the different types of supercomputer nodes that are available at the moment to run your job on. There are additional node types not listed that have no available nodes currently. The technical specifications and time constraints for each partition can be found <a href="http://faculty.smu.edu/csc/documentation/slurm.html#maneframe-ii-s-slurm-partitions-queues"> here </a>.
+  </Typography>);
+}
 
 const styles = theme => ({
   card: {
@@ -75,8 +79,19 @@ class PartitionsCard extends Component {
 
     this.state = {
       selectedPartition: null,
+      open: false
     };
   }
+
+  openHelpDialog() {
+    this.setState({
+      open: true
+    });
+  }
+
+  handleClose = value => {
+    this.setState({ open: false });
+  };
 
   selectPartition(name) {
     console.log(name)
@@ -118,6 +133,12 @@ class PartitionsCard extends Component {
           </CardContent>
           <CardActions style={{ justifyContent: "flex-end" }}>
             <Button
+              style={{ marginRight: 'auto' }}
+              size="small"
+              onClick={this.openHelpDialog.bind(this)}
+              className={classes.submit}
+            ><HelpIcon /></Button>
+            <Button
               size="small"
               className={classes.submit}
               disabled={this.state.selectedPartition == null}
@@ -125,7 +146,13 @@ class PartitionsCard extends Component {
             >Run On Open Node</Button>
           </CardActions>
         </Card>
-        
+      <HelpDialog
+	open={this.state.open}
+        onClose={this.handleClose}
+        cardtitle="Partitions Available"
+      >
+        {helpSrc()}
+      </HelpDialog>
       </div>
     )
   }
