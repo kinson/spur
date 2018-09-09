@@ -125,6 +125,7 @@ class App extends Component {
           newState = {
             ...newState,
             successMessage: 'File Uploaded',
+	    snackBarOpenError: false,
             sbatchText: body.sbatch,
             sbatchPath: body.fpath,
             tooLongToRun: body.tooLongToRun
@@ -133,6 +134,15 @@ class App extends Component {
         this.setState(newState);
       });
     });
+   }
+
+   fileInvalid() {
+     this.setState({
+       isError: true,
+       snackBarOpenError: true,
+       errorMessage: 'Invalid file type, please upload a .c or .cpp file',
+       snackBarOpenSuccess: false,
+     });
    }
 
    handleClose = (event, reason) => {
@@ -206,7 +216,7 @@ class App extends Component {
   }
 
   fetchRunResults() {
-    fetch(`${config.host}/api/fetch-output?filePath=${this.state.sbatchPath}&fileName=${this.state.uploadFilename}`)
+    fetch(`${config.host}/api/fetch-output?filePath=${this.state.sbatchPath}&fileName=${this.state.uploadFileName}`)
       .then((response) => {
         response.text().then(output => {
           let newState = {};
@@ -246,7 +256,10 @@ class App extends Component {
             </Grid>
 
             <Grid item xs={12} md={10} lg={8}>
-              <FileUploadCard handleUpload={this.handleUploadImage.bind(this)}/>
+              <FileUploadCard 
+                handleUpload={this.handleUploadImage.bind(this)}
+                validationError={this.fileInvalid.bind(this)}
+              />
             </Grid>
 
             <Grid item xs={12} md={10} lg={8}>

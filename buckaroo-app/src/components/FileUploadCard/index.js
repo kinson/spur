@@ -54,7 +54,12 @@ class FileUploadCard extends Component {
   }
 
   uploadFile(ev) {
-    this.props.handleUpload(ev, this.state.uploadInput, this.state.fileName, this.state.secret);
+    const { uploadInput, fileName, secret } = this.state;
+    if (['c', 'cpp'].includes(fileName.split('.').pop())) {
+      this.props.handleUpload(ev, uploadInput, fileName, secret);
+    } else {
+      this.props.validationError();
+    }
   }
 
   onFileInputChange(event) {
