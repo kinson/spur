@@ -2,6 +2,7 @@
 
 const Path = require('path');
 const getOpenPartitions = require('../../lib/inspectQueue');
+const config = require('../../../config');
 
 exports.plugin = {
   name: 'get-partitions',
@@ -16,7 +17,7 @@ exports.plugin = {
       },
       handler: (request, h) => {
 	let openPartitions = {};
-	if (process.env.NODE_ENV === 'development') {
+	if (process.env.NODE_ENV === 'development' && config.hpcDisabled) {
 	   openPartitions = { 
 	     'standard-mem-s': '35',
 	     'standard-mem-l': '1',

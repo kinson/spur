@@ -45,15 +45,14 @@ exports.plugin = {
         // file name
         const fileName = request.payload.fileName;
 
-
         // create sbatch for test
         creatSbatchForTestRun(filePath, partition, fileName);
 
-	if (process.env.NODE_ENV === 'development') {
+	if (process.env.NODE_ENV === 'development' && config.hpcDisabled) {
 	  return h.response({ message: 'ok', jobId: '1'});
 	}
 
-        const hpcHelper = hpc(filePath);
+        const hpcHelper = hpc(filePath, fileName);
 
         // attempt to send source and sbatch to hpc
         try {

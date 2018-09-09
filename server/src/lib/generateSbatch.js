@@ -25,8 +25,7 @@ function generateSbatch(pragmas, fileName, forTest) {
   const openMPExec = `${execName}_OpenMP`;
   const noOpenMPExec = `${execName}_NoOpenMP`;
 
-  let filetype = fileName.split('.');
-  filetype = filetype[filetype.length - 1];
+  const filetype = fileName.split('.').pop();
 
   const compiler = filetype === 'cpp' ? 'g++ -std=c++11' : 'gcc';
   

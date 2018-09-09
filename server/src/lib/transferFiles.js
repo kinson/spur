@@ -8,7 +8,10 @@ const config = require('../../config');
 const accessString =  `sshpass -p ${config.hpc.ssh.password}`;
 const { username, password } = config.hpc.ssh;
 
-function copyToHpc(filePath) {
+function copyToHpc(filePath, fileName) {
+
+  const fileExtension = fileName.split('.').pop();
+  const compiler = fileExtension === 'cpp' ? 'g++ -std=c++11' : 'gcc';
 
   return {
     transferFiles: () => {
@@ -20,7 +23,7 @@ function copyToHpc(filePath) {
     testCompile: () => {
       const relativeHPCPath = filePath.split('/').pop();
 
-      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd buckaroo/${relativeHPCPath} && module purge && module load gcc-6.3 && gcc *.c -fopenmp'`;
+      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd buckaroo/${relativeHPCPath} && module purge && module load gcc-6.3 && ${compiler} *.${fileExtension} -fopenmp'`;
 
       var stdout = execSync(execString, {
         encoding: 'utf-8'
