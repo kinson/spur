@@ -67,7 +67,7 @@ class ResultsCard extends Component {
     const { classes } = this.props;
 
     const rootStyles = {
-      // visibility: this.props.resultsText === '' ? 'hidden' : 'visible',
+      visibility: this.props.resultsText === '' ? 'hidden' : 'visible',
     }
   
     return (
