@@ -206,7 +206,7 @@ class App extends Component {
   }
 
   fetchRunResults() {
-    fetch(`${config.host}/api/fetch-output?filePath=${this.state.sbatchPath}`)
+    fetch(`${config.host}/api/fetch-output?filePath=${this.state.sbatchPath}&fileName=${this.state.uploadFilename}`)
       .then((response) => {
         response.text().then(output => {
           let newState = {};

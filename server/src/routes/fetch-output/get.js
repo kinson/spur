@@ -14,7 +14,9 @@ exports.plugin = {
       },
       handler: (request, h) => {
 
-        const hpcHelper = hpc(request.query.filePath);
+	const { filePath, fileName } = request.query;
+
+        const hpcHelper = hpc(filePath, fileName);
 
         let out = '';
         try {
