@@ -18,7 +18,7 @@ import HelpDialog from '../HelpDialog';
 
 const helpSrc = () => {
   return (<Typography variant="body1">
-    The partitions on this card represent the different types of supercomputer nodes that are available at the moment to run your job on. There are additional node types not listed that have no available nodes currently. The technical specifications and time constraints for each partition can be found <a href="http://faculty.smu.edu/csc/documentation/slurm.html#maneframe-ii-s-slurm-partitions-queues"> here </a>.
+    The partitions on this card represent the different types of supercomputer nodes that are available at the moment to run your job on. There are additional node types not listed that have no available nodes currently. The technical specifications and time constraints for each partition can be found <a href="http://faculty.smu.edu/csc/documentation/slurm.html#maneframe-ii-s-slurm-partitions-queues">here</a>.
   </Typography>);
 }
 

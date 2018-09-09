@@ -15,7 +15,7 @@ const helpSrc = () => {
   return (<Typography variant="body1">
     The results displayed here contain the contents of the output from running the job.<br /> <br />
 
-    To find more information about how to replicate this process using the command line or to find the source code for this website visit the <a href="https://github.com/kinson/buckaroo">Github page </a>.
+    To find more information about how to replicate this process using the command line or to find the source code for this website visit the <a href="https://github.com/kinson/buckaroo">Github page</a>.
   </Typography>);
 }
 
