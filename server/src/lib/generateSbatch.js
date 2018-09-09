@@ -24,18 +24,23 @@ function generateSbatch(pragmas, fileName, forTest) {
   const execName = getNameWithoutExtension(fileName)
   const openMPExec = `${execName}_OpenMP`;
   const noOpenMPExec = `${execName}_NoOpenMP`;
+
+  let filetype = fileName.split('.');
+  filetype = filetype[filetype.length - 1];
+
+  const compiler = filetype === 'cpp' ? 'g++ -std=c++11' : 'gcc';
   
   // module purge and module load
   outputString += '\n# remove all modules loaded in current workspace to start with clean slate';
   outputString += '\nmodule purge';
-  outputString += '\n# load c compiler compatible with OpenMP into the workspace';
+  outputString += '\n# load ' + filetype + ' compiler compatible with OpenMP into the workspace';
   outputString += '\nmodule load gcc-6.3\n\n';
 
   outputString += '# compile source file with OpenMP flag\n';
-  outputString += `gcc ${fileName} -o ${openMPExec} -fopenmp\n`;
+  outputString += `${compiler} ${fileName} -o ${openMPExec} -fopenmp\n`;
   if (forTest) {
     outputString += '\n# compile source file without OpenMP\n';
-    outputString += `gcc ${fileName} -o ${noOpenMPExec}\n\n`;
+    outputString += `${compiler} ${fileName} -o ${noOpenMPExec}\n\n`;
   }
   outputString += '# make OpenMP-compiled file executable\n';
   outputString += 'chmod +x ' + openMPExec + ' \n';
