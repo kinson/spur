@@ -6,6 +6,7 @@ const development = {
   webhookEmail: 'slurm@parse.samwhunter.com',
   authSecret: '',
   hpcDisabled: false,
+  maxRunTime: '1',
   hpc: {
     ssh: {
       username: 'shunter',
@@ -18,6 +19,7 @@ const production = {
   webhookEmail: 'slurm@parse.samwhunter.com',
   authSecret: 'SMU2018_Hunter%C0YLE',
   hpcDisabled: false,
+  maxRunTime: '2',
   hpc: {
     ssh: {
       username: 'shunter',

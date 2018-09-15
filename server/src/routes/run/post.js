@@ -16,7 +16,8 @@ function creatSbatchForTestRun(fpath, partition, fileName) {
   const pragmas = {
     ...getPragmas(source),
     'PARTITION': '-p ' + partition,
-    'EMAIL': config.webhookEmail 
+    'EMAIL': config.webhookEmail,
+    'TIME': '-t ' + config.maxRunTime
   };
   const sbatch = generateSbatch(pragmas, fileName, true);
 
