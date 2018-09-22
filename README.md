@@ -82,7 +82,3 @@ Once your job begins running anything that is outputted is sent to a file specif
 
 To view the file from the command line you can use the cat command line tool by executing `cat <log file name>.out`. This will print the file's contents to the command line.
 
-
-
-
-
