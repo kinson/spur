@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import BuckarooAppBar from './components/AppBar';
+import SpurAppBar from './components/AppBar';
 import WelcomeDialog from './components/WelcomeDialog';
 import FileUploadCard from './components/FileUploadCard';
 import BatchFileDisplayCard from './components/BatchFileDisplayCard';
@@ -260,7 +260,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme} >
         <div className="App">
-          <BuckarooAppBar />
+          <SpurAppBar />
           <Grid 
             container
             spacing={24}

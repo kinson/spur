@@ -26,7 +26,7 @@ class WelcomeDialog extends Component {
       <div>
         <Paper className={classes.root} elevation={4}>
           <Typography variant="headline" component="h2">
-            Welcome to Buckaroo!
+            Welcome to SPUR!
           </Typography>
           
           <Typography component="p" color="textSecondary">

@@ -15,7 +15,7 @@ function copyToHpc(filePath, fileName) {
 
   return {
     transferFiles: () => {
-      var stdout = execSync(`${accessString} scp -r ${filePath} ${username}@m2.smu.edu:/users/${username}/buckaroo`, {
+      var stdout = execSync(`${accessString} scp -r ${filePath} ${username}@m2.smu.edu:/users/${username}/spur`, {
         encoding: 'utf-8'
       });
       return stdout;
@@ -23,7 +23,7 @@ function copyToHpc(filePath, fileName) {
     testCompile: () => {
       const relativeHPCPath = filePath.split('/').pop();
 
-      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd buckaroo/${relativeHPCPath} && module purge && module load gcc-6.3 && ${compiler} *.${fileExtension} -fopenmp'`;
+      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd spur/${relativeHPCPath} && module purge && module load gcc-6.3 && ${compiler} *.${fileExtension} -fopenmp'`;
 
       var stdout = execSync(execString, {
         encoding: 'utf-8'
@@ -33,7 +33,7 @@ function copyToHpc(filePath, fileName) {
     submitSbatch: () => {
       const relativeHPCPath = filePath.split('/').pop();
 
-      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd buckaroo/${relativeHPCPath} && sbatch ./testRun.sbatch'`;
+      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd spur/${relativeHPCPath} && sbatch ./testRun.sbatch'`;
 
       var stdout = execSync(execString, {
         encoding: 'utf-8'
@@ -46,7 +46,7 @@ function copyToHpc(filePath, fileName) {
     fetchOutput: () => {
       const relativeHPCPath = filePath.split('/').pop();
 
-      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd buckaroo/${relativeHPCPath} && cat *_*.out'`;
+      let execString = `${accessString} ssh ${username}@m2.smu.edu 'cd spur/${relativeHPCPath} && cat *_*.out'`;
 
       var stdout = execSync(execString, {
         encoding: 'utf-8'

@@ -12,14 +12,14 @@ const styles = {
   },
 };
 
-function BuckarooAppBar(props) {
+function SpurAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Toolbar>
           <Typography variant="title" color="inherit">
-            Buckaroo
+           SPUR 
           </Typography>
         </Toolbar>
       </AppBar>
@@ -27,8 +27,8 @@ function BuckarooAppBar(props) {
   );
 }
 
-BuckarooAppBar.propTypes = {
+SpurAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true})(BuckarooAppBar);
+export default withStyles(styles, {withTheme: true})(SpurAppBar);
