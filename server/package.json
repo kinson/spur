@@ -1,7 +1,7 @@
 {
-  "name": "buckaroo-server",
+  "name": "spur-server",
   "version": "1.0.0",
-  "description": "server to handle buckaroo connections",
+  "description": "server to handle spur connections",
   "main": "index.js",
   "author": "Sam Hunter",
   "license": "MIT",

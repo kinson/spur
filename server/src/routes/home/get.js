@@ -13,7 +13,7 @@ exports.plugin = {
       },
       handler: {
         directory: {
-          path: Path.join(__dirname, '../../../../buckaroo-app/build'),
+          path: Path.join(__dirname, '../../../../spur-app/build'),
           listing: false,
           index: true
         }
