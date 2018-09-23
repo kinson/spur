@@ -2,5 +2,5 @@
   "JOB_NAME": "-J sample_job",
   "JOB_OUTPUT": "-o sample_job_%j.out",
   "JOB_MEM": "--mem=64G",
-  "JOB_X": "--exclusive",
+  "JOB_X": "--exclusive"
 }
