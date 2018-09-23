@@ -6,9 +6,25 @@ function getNameWithoutExtension(fileName) {
   return fileName.split('.')[0];
 }
 
+
+const defaultPragmas = {
+  'JOB_NAME': '-J sample_job',
+  'JOB_OUTPUT': '-o sample_job_%j.out',
+  'JOB_MEM': '--mem=64G',
+  'JOB_X': '--exclusive',
+};
+
 function generateSbatch(pragmas, fileName, forTest) {
   var outputString = '#!/bin/bash\n';
   outputString += '\n# set SLURM directives\n'
+  
+  
+  // if the user does not include any pragmas in their code
+  // use the set of default pragmas
+  if (Object.keys(pragmas).length === 0) {
+    pragmas = defaultPramas;
+  }
+
   Object.keys(pragmas).forEach(function (prag) {
     // if running the test suite override the email
     if (!forTest || (prag !== 'EMAIL' && prag !== 'EMAIL_TYPE')) {

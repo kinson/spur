@@ -16,6 +16,8 @@ exports.plugin = {
 
         const jobId = subject.split(/\s+/)[1].split('=').pop();
 
+	console.log(subject);
+
         let jobStatus = 'unknown';
 
         if (subject.indexOf('Began') !== -1) {

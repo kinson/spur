@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <time.h>
 #ifdef _OPENMP
    #include <omp.h>
@@ -11,7 +12,7 @@
 // cprag NAME samsfirstjob
 // cprag TIME 120
 // cprag EMAIL shunter@smu.edu
-// cprag MEM 64G
+// cprag MEM 512G 
 
 void mxv(int m, int n, double * restrict a, double * restrict b, double * restrict c);
 
@@ -23,6 +24,8 @@ int main(int argc, char *argv[])
     printf("Please give m and n: ");
     m = 40000;
     n = 50000;
+
+    usleep(30000000);
 
     if ( (a=(double *)malloc(m*sizeof(double))) == NULL )
       perror("memory alocation for a");
