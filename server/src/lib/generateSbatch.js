@@ -22,7 +22,7 @@ function generateSbatch(pragmas, fileName, forTest) {
   // if the user does not include any pragmas in their code
   // use the set of default pragmas
   if (Object.keys(pragmas).length === 0) {
-    pragmas = defaultPramas;
+    pragmas = defaultPragmas;
   }
 
   Object.keys(pragmas).forEach(function (prag) {
