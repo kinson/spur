@@ -84,6 +84,24 @@ class App extends Component {
         progressComplete: true,
         progressProcessing: false
       })
+    } else if (update && update.status === 'TIMEOUT') {
+      this.setState({
+	progressComplete: true,
+	progressProcessing: false,
+	isError: true,
+	errorMessage: 'Job took too long to complete and was stopped (you can still view its output)',
+	snackBarOpenSucess: false,
+	snackBarOpenError: true,
+      });
+    } else if (update && update.status === 'FAILED') {
+      this.setState({
+	progressComplete: true,
+	progressProcessing: false,
+	isError: true,
+	errorMessage: 'Job failed to complete (you can still view its output)',
+	snackBarOpenSucess: false,
+	snackBarOpenError: true,
+      });
     }
   }
 

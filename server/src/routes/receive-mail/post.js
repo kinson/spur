@@ -24,7 +24,11 @@ exports.plugin = {
           jobStatus = 'BEGAN';
         } else if (subject.indexOf('Ended') !== -1) {
           jobStatus = 'ENDED';
-        }
+        } else if (subject.includes('TIMEOUT')) {
+	  jobStatus = 'TIMEOUT';
+	} else if (subject.includes('Failed')) {
+	  jobStatus = 'FAILED';
+	}
 
 	if (jobStatus === 'ENDED' && subject.indexOf('ExitCode 0') === -1) {
 	  return h.response('Program failed to execute').code(412);
