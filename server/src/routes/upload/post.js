@@ -49,7 +49,7 @@ exports.plugin = {
         const sbatch = generateSbatch(pragmas, request.payload.fileName);
 
         let tooLongToRun = false;
-        const runTime = parseInt(pragmas.TIME.split(' ')[1]);
+        const runTime = pragmas.TIME ? parseInt(pragmas.TIME.split(' ')[1]) : 1;
         if (runTime > 120) {
           tooLongToRun = true;
         }
