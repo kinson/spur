@@ -70,6 +70,10 @@ function getPragmas(input) {
     throw new Error('Uploaded code does not contain openMP directive');
   }
 
+  if (!printer.pragmas || Object.keys(printer.pragmas).length === 0) {
+    return require('./defaultPragmas');
+  }
+
   return printer.pragmas;
 }
 

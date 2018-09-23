@@ -6,14 +6,6 @@ function getNameWithoutExtension(fileName) {
   return fileName.split('.')[0];
 }
 
-
-const defaultPragmas = {
-  'JOB_NAME': '-J sample_job',
-  'JOB_OUTPUT': '-o sample_job_%j.out',
-  'JOB_MEM': '--mem=64G',
-  'JOB_X': '--exclusive',
-};
-
 function generateSbatch(pragmas, fileName, forTest) {
   var outputString = '#!/bin/bash\n';
   outputString += '\n# set SLURM directives\n'
