@@ -75,7 +75,7 @@ class PartitionsCard extends Component {
     this.state = {
       selectedPartition: null,
       open: false,
-      hoveredRow: null
+      runningTest: false,
     };
   }
 
@@ -93,15 +93,8 @@ class PartitionsCard extends Component {
     this.setState({ selectedPartition: name });
   }
 
-  hoverOverRow(name) {
-    this.setState({ hoveredRow: name });
-  }
-
-  hoverLeaveRow(name) {
-    this.setState({ hoveredRow: null});
-  }
-
   runTestJob() {
+    this.setState({ runningTest: true });
     this.props.runTestJob(this.state.selectedPartition);
   }
   
@@ -153,7 +146,7 @@ class PartitionsCard extends Component {
             <Button
               size="small"
               className={classes.submit}
-              disabled={this.state.selectedPartition == null}
+              disabled={this.state.selectedPartition == null || this.state.runningTest}
               onClick={this.runTestJob.bind(this)}
             >Run On Open Node</Button>
           </CardActions>
