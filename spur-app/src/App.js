@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import SpurAppBar from './components/AppBar';
+import './App.css';
 import WelcomeDialog from './components/WelcomeDialog';
 import FileUploadCard from './components/FileUploadCard';
 import BatchFileDisplayCard from './components/BatchFileDisplayCard';
@@ -175,17 +174,14 @@ class App extends Component {
     fetch(`${config.host}/api/partitions`, {
       method: 'POST'
     }).then((response) => {
-      response.json().then(body => {
-        const nodes = Object.keys(body);
+      response.json().then(nodes => {
         if (!nodes || nodes.length === 0) {
           this.setState({
             snackBarOpenError: true,
             errorMessage: 'No available partitions'
           })
         }
-        return nodes.map(key => {
-          return { name: key, nodesAvailable: body[key] };
-        });
+	return nodes;
       }).then(partitions => this.setState({ partitions }));
     })
     .catch(err => {

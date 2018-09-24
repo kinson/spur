@@ -5,7 +5,7 @@ require('dotenv').config();
 const development = {
   webhookEmail: 'slurm@parse.samwhunter.com',
   authSecret: '',
-  hpcDisabled: false,
+  hpcDisabled: true,
   maxRunTime: '1',
   hpc: {
     ssh: {

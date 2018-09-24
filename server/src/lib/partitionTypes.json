@@ -1,0 +1,62 @@
+[
+  {
+    "name": "standard-mem-s",
+    "description": "36 cores, 256 GB of RAM, 1 day time limit"
+  },
+  {
+    "name": "standard-mem-m",
+    "description": "36 cores, 256 GB of RAM, 1 week time limit"
+  },
+  {
+    "name": "standard-mem-l",
+    "description": "36 cores, 256 GB of RAM, 1 month time limit"
+  },
+  {
+    "name": "medium-mem-1-s",
+    "description": "36 cores, 768 GB of RAM, 1 day time limit"
+  },
+  {
+    "name": "medium-mem-1-m",
+    "description": "36 cores, 768 GB of RAM, 1 week time limit"
+  },
+  {
+    "name": "medium-mem-1-l",
+    "description": "36 cores, 768 GB of RAM, 1 month time limit"
+  },
+  {
+    "name": "medium-mem-2",
+    "description": "24 cores, 768 GB of RAM, 2 week time limit"
+  },
+  {
+    "name": "high-mem-1",
+    "description": "36 cores, 1,538 GB of RAM, 2 week time limit"
+  },
+  {
+    "name": "high-mem-2",
+    "description": "40 cores, 1,538 GB of RAM, 2 week time limit"
+  },
+  {
+    "name": "mic",
+    "description": "64 cores, 384 GB of RAM, 1 week time limit"
+  },
+  {
+    "name": "gpgpu-1",
+    "description": "36 cores, 256 GB of RAM, 1 Nvidia P100 GPU, 1 week time limit"
+  },
+  {
+    "name": "gpgpu-2",
+    "description": "12 cores, 31 GB of RAM, 4 Nvidia K80 GPU, 1 week time limit"
+  },
+  {
+    "name": "dcv",
+    "description": "36 cores, 256 GB of RAM, 1 Nvidia M5000 GPU, 1 day time limit"
+  },
+  {
+    "name": "development",
+    "description": "36 cores, 256 GB of RAM, partial exclusive used, 2 hour time limit"
+  },
+  {
+    "name": "htc",
+    "description": "1 cores, 8 GB of RAM, shared usage, 1 day time limit"
+  }
+]

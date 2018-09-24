@@ -18,17 +18,12 @@ exports.plugin = {
       handler: (request, h) => {
 	let openPartitions = {};
 	if (process.env.NODE_ENV === 'development' && config.hpcDisabled) {
-	   openPartitions = { 
-	     'standard-mem-s': '35',
-	     'standard-mem-l': '1',
-	     htc: '26',
-	     development: '3',
-	     'medium-mem-1-s': '3',
-	     'medium-mem-1-m': '1',
-	     'medium-mem-2': '1',
-	     'high-mem-1': '4',
-	     mic: '38' 
-	   };
+	  openPartitions = [
+	    { name: 'standard-mem-s', description: 'A sample description', nodesAvailable: '35' },
+	    { name: 'standard-mem-l', description: 'A sample description', nodesAvailable: '2' },
+	    { name: 'high-mem-1', description: 'A sample description', nodesAvailable: '1' },
+	    { name: 'mic', description: 'A sample description', nodesAvailable: '10' },
+	  ];
 	} else {
 	  openPartitions = getOpenPartitions();
 	}

@@ -1,5 +1,3 @@
-'use strict';
-
 const development = {
   host: 'http://localhost:3000',
   wsHost: 'ws://localhost:3000'

@@ -6,13 +6,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
-import Avatar from '@material-ui/core/Avatar';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import HelpIcon from '@material-ui/icons/Help';
 import HelpDialog from '../HelpDialog';
 
@@ -49,24 +47,21 @@ function generate(partitions, selectPartition, selectedPartition) {
     }
     return 'outlined';
   }
+
   return partitions.map(value =>
     React.cloneElement(
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <DeveloperBoardIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={value.name}
-          secondary={`${value.nodesAvailable} node(s) available`} 
-        />
-        <ListItemSecondaryAction>
+      <TableRow hover>
+        <TableCell component="th" scope="row">
+          {value.name}
+        </TableCell>
+        <TableCell numeric style={{textAlign: 'left'}}> {value.nodesAvailable} </TableCell>
+        <TableCell> {value.description || 'N/A'} </TableCell>
+        <TableCell style={{textAlign: 'right'}}>
           <Button variant={style(value.name)} color="secondary" onClick={selectPartition.bind(this, value.name)}>
             Select Partition
           </Button>
-        </ListItemSecondaryAction>
-      </ListItem>, {
+        </TableCell>
+      </TableRow>, {
         key: value.name,
     }),
   );
@@ -79,7 +74,8 @@ class PartitionsCard extends Component {
 
     this.state = {
       selectedPartition: null,
-      open: false
+      open: false,
+      hoveredRow: null
     };
   }
 
@@ -94,8 +90,15 @@ class PartitionsCard extends Component {
   };
 
   selectPartition(name) {
-    console.log(name)
     this.setState({ selectedPartition: name });
+  }
+
+  hoverOverRow(name) {
+    this.setState({ hoveredRow: name });
+  }
+
+  hoverLeaveRow(name) {
+    this.setState({ hoveredRow: null});
   }
 
   runTestJob() {
@@ -120,14 +123,23 @@ class PartitionsCard extends Component {
               Available Partitions
             </Typography>
 
-          <List>
-            {generate(
-              this.props.partitions,
-              this.selectPartition.bind(this),
-              this.state.selectedPartition
-            )}
-
-          </List>        
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell> Partition Name </TableCell>
+                <TableCell> Nodes Available </TableCell>
+                <TableCell> Description </TableCell>
+                <TableCell style={{textAlign: 'right'}}> Select Partition </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+	      {generate(
+		this.props.partitions,
+		this.selectPartition.bind(this),
+		this.state.selectedPartition,
+	      )}
+            </TableBody>
+          </Table>        
         
           
           </CardContent>

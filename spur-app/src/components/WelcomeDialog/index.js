@@ -13,11 +13,6 @@ const styles = theme => ({
 });
 
 class WelcomeDialog extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
     const { classes } = this.props;
   
